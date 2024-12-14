@@ -57,7 +57,7 @@
 
 (defwidget screenshotoptions []
   (box :orientation "h"
-    :space-evenlyhttps://codeberg.org/JustineSmithies/hyprland-dotfiles/src/branch/master/.config/eww/scripts true
+    :space-evenly true
     ; :class "layout-box"
     :valign "fill"
     :halign "fill"
@@ -119,13 +119,12 @@
               :height "7px"
               :anchor "top center")
   (workspace))
+
 (defwidget workspace []
   (box :vexpand true
     :hexpand false
     :valign "left"
     :class "layout-box"))
-     
-   
 
 (defwindow rightmarks
   :monitor 0
@@ -139,13 +138,31 @@
   (screenshotoptions))
 ; It should have, clipboard, notification, general menu, wifi and bluetooth.
 
-(defwindow notitable
+(defwindow notitable ; Stands foor NOTIfication TABLE.
   :monitor 0
   :stacking "fg"
   :windowtype "normal"
-  :wm-ignore true
+  :wm-ignore true 
   :geometry (geometry :focusable false
-              :width "60%"
-              :height "25%"
-              :anchor "center")
-  (screenshotoptions))
+              :width "25%"
+              :height "100%"
+              :anchor "left center")
+  (notilist))
+
+(defwidget notilist []
+  (box :hexpand true
+    :space-evenly false
+    :orientation "v"
+    (box :geometry (geometry :height "30px"
+                     :anchor "top left")
+      (label :text "Random text")) 
+    (box :vexpand true 
+      :hexpand true
+      :orientation "v"
+      :geometry (geometry :anchor "top")
+      :space-evenly false
+      (box :orientation "h"
+        (label :text ""))
+      (box :orientation "h"
+        (label :text "")))))
+
