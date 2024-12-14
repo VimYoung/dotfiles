@@ -3,28 +3,28 @@
     {
       "level": 10,
       "urgency": "Critical",
-      "title": "Battery Low",
+      "title": " System: Battery Low",
       "message": "The battery is {}%, connect the arc reactor."
     },
     {
       "level": 5,
       "urgency": "Critical",
       "time_secs": 10,
-      "title": "Critical Battery Status",
+      "title": " System: Battery Critical",
       "message": "Your power is below {}%, the system is about to shut down."
     },
     {
       "level": 20,
       "urgency": "Normal",
       "time_secs": 10,
-      "title": "Test notification.",
+      "title": " System: Battery About To Get Low",
       "message": "{}% battery left, Prepare the arc reactor."
     }
   ],
   "full_notification": {
     "urgency": "Low",
     "enabled": true,
-    "title": "Battery Status",
-    "message": "Fully Charged 100%"
+    "title": " System",
+    "message": "Battery fully charged 100%"
   }
 }
