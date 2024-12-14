@@ -27,7 +27,6 @@ set notification-warning-fg     "#555169"
 
 set highlight-color             "#ebbcba"
 set highlight-active-color      "#eb6f92"
-set highlight-transparency      0.5
 
 set completion-bg               "#6e6a86"
 set completion-fg               "#ebbcba"
