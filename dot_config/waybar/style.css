@@ -1,104 +1,167 @@
-@import "./rose-pine.css";
+@define-color base            #191724;
+@define-color surface         #1f1d2e;
+@define-color overlay         #26233a;
+
+@define-color muted           #6e6a86;
+@define-color subtle          #908caa;
+@define-color text            #e0def4;
+
+@define-color love            #eb6f92;
+@define-color danger          #f53c3c;
+@define-color gold            #f6c177;
+@define-color rose            #ebbcba;
+@define-color pine            #268bd2;
+@define-color foam            #9ccfd8;
+@define-color iris            #c4a7e7;
+
+@define-color highlightLow    #21202e;
+@define-color highlightMed    #403d52;
+@define-color highlightHigh   #524f67;
+
 * {
-	font-size: 18px;
-	font-family: "Iosevka Extended", "Iosevka";
+	font-size: 16px;
+	font-family: "Iosevka Extended", "Iosevka Extralight";
+	/* font-family: "JetBrainsMono", "Nerd"; */
+  /* margin: 0px 0px 1px 0px; */
+  /* padding: 1px 4px 0px 4px; */
+  /* border-radius: 0px 0px 7px 7px; */
 }
 
 window#waybar {
-	background: @base;/*#292b2e; */
-	color: #ececec;
-  /* border-bottom: 1px solid #181825; */
-  /* border-radius: 50px; */
-  /* transition-property: background-color; */
-  /* color: @base; */
-}
-
-/* #custom-right-arrow-dark, */
-/* #custom-left-arrow-dark { */
-/* 	font-size: 20px; */
-/* 	color: @base; */
-/* } */
-/* #custom-right-arrow-light, */
-/* #custom-left-arrow-light { */
-/* 	font-size: 20px; */
-/* 	color: #292b2e; */
-/* 	background: @base; */
-/* } */
-
-#workspaces,
-#clock.1,
-#clock.2,
-#clock.3,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#disk,
-#backlight,
-#window,
-#tray {
 	background: @base;
+  color: #ececec;
+  background-color: #191724;
+  border-radius: 0px 0px 9px 9px;
 }
 
-#workspaces button {
-	margin: 3px 4px 3px 4px;
-	padding: 0px 0px 0px 0px;
-	color: #fdf6e3;
-	/* border: 1px solid #fdf6e3; */
-
+#pulseaudio, #network, #clock {
+  background-color: rgba(64, 61, 82, 0.5);
+  margin: 3px 0px 3px 0px;
+  padding: 1px 4px 0px 4px;
+  border-radius: 8px 0px 8px 0px;
 }
 
-#workspaces button.empty {
-	color: #999999;
+#tray, #idle_inhibitor, #power-profiles-daemon, #cpu, #temperature, #backlight, #battery {
+  /* background-color: @highlightMed; */
+  background-color: rgba(64, 61, 82, 0.5);
+  margin: 3px 0px 3px 0px;
+  padding: 1px 4px 0px 4px;
+  border-radius: 0px 8px 0px 8px;
 }
 
-#workspaces button.active {
-	color: #9525ff;
-	/* border: 1px solid #9525ff; */
+#pulseaudio:hover, #network:hover, #clock:hover, #tray:hover, #idle_inhibitor:hover, #power-profiles-daemon:hover, #cpu:hover, #temperature:hover, #backlight:hover, #battery:hover{
+    transition: 200ms linear;
+    background-color: @highlightHigh;
 }
 
-#workspaces button:hover {
-	border: 1px solid #9525ff;
-	color: #9525ff;
+#power-profiles-daemon.performance {
+    color: @love;
+}
+
+#power-profiles-daemon.balanced {
+    color: @pine;
+}
+
+#power-profiles-daemon.power-saver {
+    color: #2ecc71;
+}
+
+#battery {
+    color: @text;
+}
+
+#battery.charging, #battery.plugged {
+    color: #26A65B;
+}
+
+#battery.critical:not(.charging) {
+    color: @danger;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#temperature {
+    color: @rose;
+}
+
+#temperature.critical {
+    color: @love;
+}
+
+#network {
+    color: @text;
+}
+
+#network.disconnected {
+    color: @danger;
+}
+
+#network.disconnected {
+    color: @danger;
 }
 
 #pulseaudio {
-	color: #268bd2;
+  color: @pine;
 }
+
+#pulseaudio.muted {
+    color: @foam;
+}
+
 #memory {
 	color: #2aa198;
 }
+
 #cpu {
 	color: #6c71c4;
 }
-#battery {
-	color: #46b40e;
-}
+
 #backlight {
-	color: #ffd966;
+	color: @gold;
 }
 #disk {
 	color: #b58900;
 }
 
-#window {
-	padding: 0 10px;
+#waybar.empty #window{
+  min-width: 1px;
+	padding: 0 1px;
 	color: #9525ff;
 }
-
-window#waybar.empty #window{
-	min-width: 20px;
-}
+/**/
+/* #window:hover { */
+/* 	border: 1px solid #9525ff; */
+/* 	color: #9525ff; */
+/* } */
 
 #tray {
-	padding: 0 8px;
+	padding: 0 3px;
 }
-#clock,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#backlight,
+
 #disk {
-	padding: 0 10px;
+	padding: 0 4px;
 }
+
+
+/*Not used anymore*/
+
+/* #workspaces button { */
+/* 	color: #fdf6e3; */
+/* } */
+/**/
+/* #workspaces button.empty { */
+/* 	color: #999999; */
+/* } */
+/**/
+/* #workspaces button.active { */
+/* 	color: #9525ff; */
+/* } */
+/**/
+/* #workspaces button:hover { */
+/* 	border: 1px solid #9525ff; */
+/* 	color: #9525ff; */
+/* } */
+
