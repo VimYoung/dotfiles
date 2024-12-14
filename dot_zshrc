@@ -22,6 +22,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 . "$HOME/.cargo/env"
 export PATH=$PATH:/home/bhaumik/bin
+export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(zoxide init zsh)"
 eval "$(oh-my-posh init zsh --config ~/assets/command-prompt-ohmyposh/bubbles_custom.omp.json)"
@@ -38,4 +39,7 @@ antigen bundle jeffreytse/zsh-vi-mode
 
 # Tell Antigen that you're done.
 antigen apply
+
+## Aliases
+alias width="xdpyinfo | awk '/dimensions/{print $2}' | tr 'x' '\n' | sed -n '2p'"
 
