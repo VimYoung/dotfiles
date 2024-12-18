@@ -34,7 +34,35 @@ window#waybar {
   border-radius: 0px 0px 9px 9px;
 }
 
-#pulseaudio, #network, #clock {
+/*Intentially left mpris here.*/
+#clock {
+  background-color: rgba(64, 61, 82, 0.5);
+  margin: 3px 0px 3px 0px;
+  padding: 1px 4px 0px 4px;
+  border-radius: 8px 8px 8px 8px;
+}
+
+#pulseaudio-slider slider {
+    min-height: 0px;
+    min-width: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+    min-height: 10px;
+    min-width: 80px;
+    border-radius: 5px;
+    background-color: black;
+}
+#pulseaudio-slider highlight {
+    min-width: 10px;
+    border-radius: 5px;
+    background-color: green;
+}
+#pulseaudio, #network {
   background-color: rgba(64, 61, 82, 0.5);
   margin: 3px 0px 3px 0px;
   padding: 1px 4px 0px 4px;

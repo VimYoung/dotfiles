@@ -6,21 +6,22 @@
     "height": 30, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": [
-        //"hyprland/workspaces",
         //"hyprland/submap",
         "custom/menu",
         "pulseaudio",
-        "network"
+        //"pulseaudio/slider",
+        "network"//,
+        //"hyprland/workspaces", //Uncomment the line if not using eww workspaces.
         //"hyprland/scratchpad",
         //"custom/media"
     ],
     "modules-center": [
-        //"clock"
+        "mpris",
         "clock",
-        "hyprland/submap"
+        "hyprland/submap",
+        "mpd"
     ],
     "modules-right": [
-        //"mpd",
         "tray",
         "idle_inhibitor",
         "power-profiles-daemon",
@@ -35,7 +36,7 @@
         "custom/power"
     ],
     "hyprland/workspaces": {
-      "format-window-separator": " ",
+      "format-window-separator": "",
       "window-rewrite-default": "",
       "window-rewrite": {},
       "format": "{icon}",
@@ -43,6 +44,7 @@
         "active": "",
         "default": ""
       },
+      "show-special":true,
       "persistent-workspaces": {
              "*": 5, // 5 workspaces by default on every monitor
        }
@@ -99,6 +101,20 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
+    "mpris": {
+      "format": "{player_icon} {dynamic}",
+      "format-paused": "{status_icon} <i>{dynamic}</i>",
+      "tooltip": false,
+      "player-icons": {
+        "default": "⏸",
+        "mpv": "🎵"
+      },
+      "status-icons": {
+        "paused": "▶"
+      },
+      "dynamic-len":30,
+      // "ignored-players": ["firefox"]
+    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -113,7 +129,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "format":"{:%I:%M %p}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        //"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip": false,
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
@@ -127,7 +144,7 @@
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
+        "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""]
     },
@@ -141,8 +158,8 @@
     "battery": {
         "states": {
             "good": 95,
-            "warning": 20,
-            "critical": 10
+            "warning": 30,
+            "critical": 20
         },
         // "format": "{capacity}% {icon}",
         // "format-full": "{capacity}% {icon}",
@@ -154,6 +171,7 @@
         "format-charging": "",
         "format-plugged": "",
         "format-alt": "{time}",
+        "tooltip-format":"{capacity}%",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
@@ -202,6 +220,11 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal"
     },
     "custom/media": {
         "format": "{icon} {text}",
