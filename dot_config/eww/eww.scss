@@ -113,6 +113,15 @@ padding: 0 10px;
   padding-left: 7px;
   // border-color: #eb6f92;
   // border-width: 1;
+  &:hover {
+    transition: 200ms linear;
+    // border-color: #e0def4;
+    background-color: rgba(#f6c177, 1);
+    color: rgba(#1f1d2e, 1);
+  }
+  &:active { 
+    background-color: rgba(#26233a,1); 
+        }
 }
 
 .noticlose {border-radius: 0em 1em 1em 0em;
@@ -121,6 +130,7 @@ padding: 0 10px;
       transition: 200ms linear;
       // border-color: #e0def4;
       background-color: rgba(#eb6f92, 1);
+      color: rgba(#1f1d2e, 1);
     }
   }
 
