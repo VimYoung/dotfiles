@@ -23,6 +23,7 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 . "$HOME/.cargo/env"
 export PATH=$PATH:/home/bhaumik/bin
 export PATH="$HOME/.local/bin:$PATH"
+export GTK_THEME=Catppuccin-Dark
 
 eval "$(zoxide init zsh)"
 eval "$(oh-my-posh init zsh --config ~/assets/command-prompt-ohmyposh/bubbles_custom.omp.json)"
