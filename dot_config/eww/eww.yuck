@@ -1,3 +1,7 @@
+(defvar test false)
+(defvar notijson "")
+(defvar notiopen false)
+
 (defwidget bar0 []
  (box :class "bar"
      (workspaces0)))
@@ -138,31 +142,123 @@
   (screenshotoptions))
 ; It should have, clipboard, notification, general menu, wifi and bluetooth.
 
-(defwindow notitable ; Stands foor NOTIfication TABLE.
+(defwindow notitable  ; Stands foor NOTIfication TABLE.
   :monitor 0
   :stacking "fg"
   :windowtype "normal"
   :wm-ignore true 
   :geometry (geometry :focusable false
-              :width "25%"
+              :width "5px"
               :height "100%"
-              :anchor "left center")
-  (notilist))
+              :anchor "right top")
+  (notiopener))
+
+(defwidget notiopener []
+  (eventbox
+    :orientation "v"
+    :onhover `${EWW_CMD} update notiopen=true`
+    :onhoverlost `${EWW_CMD} update notiopen=false`
+    (box :hexpand true
+      :orientation "v"
+      :vexpand true
+      (revealer 
+        :orientation "v"
+        :reveal notiopen
+        :duration "300ms"
+        :transition "slideleft"
+        (notilist)))))
 
 (defwidget notilist []
   (box :hexpand true
+    :width 350
+    :vexpand true
     :space-evenly false
     :orientation "v"
-    (box :geometry (geometry :height "30px"
-                     :anchor "top left")
-      (label :text "Random text")) 
-    (box :vexpand true 
+    :class "bar"
+    (box :class "notiheading text" 
+      :space-evenly false
+      :hexpand true
+      :geometry (geometry :height "30px"
+                  :anchor "top left")
+      (button :class "notirefresh bar"
+        :onclick `${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
+          (label :css "margin: 2px;":xalign 0 :text "󰑐"))
+      (label :xalign 1
+        :hexpand true
+        :text "Notifications")) 
+    (box :vexpand true
       :hexpand true
       :orientation "v"
-      :geometry (geometry :anchor "top")
-      :space-evenly false
-      (box :orientation "h"
-        (label :text ""))
-      (box :orientation "h"
-        (label :text "")))))
+      :space-evely false
+      :geometry (geometry :width "100%")
+      (scroll :vscroll true
+        :hscroll false
+        :space-evely false
+        :vexpand false
+        :orientation "v"
+        (box :orientation "v"
+          :hexpand true
+          :vexpand false
+          :geometry (geometry :width "100%")
+          :spacing 5
+          :space-evenly false
+          (for entry in notijson
+            (box :hexpand true
+              :class "bar card"
+              :orientaton "h"
+              :space-evenly false
+              (image :class "notiimage"
+                :path {entry.icon_path.data}
+                :hexpand false
+                :width 20
+                :image-width 40
+                :image-height 40)
+              (box :hexpand true
+                :orientation "v"
+                :spacing 0
+                :space-evenly false
+                :geometry (geometry :width "100%"
+                            :height "1px"
+                            :anchor "top")
+                (label :wrap true
+                  :xalign 0
+                  :text {entry.summary.data})
+                (label :wrap true
+                  :xalign 0
+                  :yalign 0
+                  :text {entry.body.data}))
+              (button :hexpand false
+                :class "noticlose"
+                :width 20
+                :onclick `dunstctl history-rm ${entry.id.data} && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
+                (label :yalign 0.5
+                  :text "")))))))))
 
+(defwindow calenders ; Stands foor NOTIfication TABLE.
+  :monitor 0
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true 
+  :geometry (geometry :focusable false
+              :width "10%"
+              :height "5px"
+              :anchor "top center")
+  (calenders))
+
+(defwidget calenders []
+  (eventbox
+    :orientation "h"
+    :halign "center"
+    :onhover `${EWW_CMD} update test=true`
+    :onhoverlost `${EWW_CMD} update test=false`
+    (box
+      :orientation "v"
+      :halign "center"
+      (revealer 
+        :orientation "h"
+        :reveal test
+        :duration "300ms"
+        :transition "slidedown"
+        (box :vexpand true
+          :hexpand true 
+          (calendar :class "bar calender"))))))
