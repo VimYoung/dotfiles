@@ -1,29 +1,24 @@
+(include "./notitable.yuck")
+
 (defvar test false)
 (defvar notijson "")
 (defvar notiopen false)
+(defvar rightmarksopen 1)
+(defvar mainwidget false)
+(defvar secondwidget false)
+(defvar thirdwidget false)
+(defvar fourthwidget false)
+(defvar selectedleftwindow false)
 
-(defwidget bar0 []
+
+(defwidget workspaces []
  (box :class "bar"
-     (workspaces0)))
-
-
-(defwidget bar1 []
- (box :class "bar"
-     (workspaces1)))
+     (literal :content workspace0)))
 
 (deflisten workspace0
   "scripts/workspace.sh 0")
 
-(defwidget workspaces0 []
-  (literal :content workspace0))
-
-(deflisten workspace1
-  "scripts/workspace.sh 1")
-
-(defwidget workspaces1 []
-  (literal :content workspace1))
-
-(defwindow bar0
+(defwindow workspaces
   :monitor 0
   :windowtype "dock"
   :geometry (geometry :width "100%"
@@ -32,21 +27,7 @@
   :stacking "bt"
   :exclusive true
   :focusable false
-  (bar0))
-
-(defwindow bar1
-  :monitor 1
-  :windowtype "dock"
-  :geometry (geometry :x "0%"
-                      :y "10px"
-                      :width "100%"
-                      :height "20px"
-                      :anchor "top center")
-  :stacking "bt"
-  :exclusive true
-  :focusable false
-  (bar1))
-
+  (workspaces))
 
 (defwindow screenshot
   :monitor 0
@@ -110,38 +91,6 @@
   (box :class "layout-box"
     (eventbox :onclick "eww close ${window} && eww close ${window}-closer")))
 
-
-
-(defwindow workspaces
-  :monitor 0
-  :exclusive true
-  :stacking "fg"
-  :windowtype "normal"
-  :wm-ignore true
-  :geometry (geometry 
-              :width "100%"
-              :height "7px"
-              :anchor "top center")
-  (workspace))
-
-(defwidget workspace []
-  (box :vexpand true
-    :hexpand false
-    :valign "left"
-    :class "layout-box"))
-
-(defwindow rightmarks
-  :monitor 0
-  :stacking "fg"
-  :windowtype "normal"
-  :wm-ignore true
-  :geometry (geometry :focusable false
-              :width "60%"
-              :height "25%"
-              :anchor "center")
-  (screenshotoptions))
-; It should have, clipboard, notification, general menu, wifi and bluetooth.
-
 (defwindow notitable  ; Stands foor NOTIfication TABLE.
   :monitor 0
   :stacking "fg"
@@ -149,7 +98,7 @@
   :wm-ignore true 
   :geometry (geometry :focusable false
               :width "5px"
-              :height "100%"
+              :height "95%"
               :anchor "right top")
   (notiopener))
 
@@ -168,71 +117,6 @@
         :transition "slideleft"
         (notilist)))))
 
-(defwidget notilist []
-  (box :hexpand true
-    :width 350
-    :vexpand true
-    :space-evenly false
-    :orientation "v"
-    :class "bar"
-    (box :class "notiheading text" 
-      :space-evenly false
-      :hexpand true
-      :geometry (geometry :height "30px"
-                  :anchor "top left")
-      (button :class "notirefresh bar"
-        :onclick `${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
-          (label :css "margin: 2px;":xalign 0 :text "󰑐"))
-      (label :xalign 1
-        :hexpand true
-        :text "Notifications")) 
-    (box :vexpand true
-      :hexpand true
-      :orientation "v"
-      :space-evely false
-      :geometry (geometry :width "100%")
-      (scroll :vscroll true
-        :hscroll false
-        :space-evely false
-        :vexpand false
-        :orientation "v"
-        (box :orientation "v"
-          :hexpand true
-          :vexpand false
-          :geometry (geometry :width "100%")
-          :spacing 5
-          :space-evenly false
-          (for entry in notijson
-            (box :hexpand true
-              :class "bar card"
-              :orientaton "h"
-              :space-evenly false
-              (image :class "notiimage"
-                :path {entry.icon_path.data}
-                :hexpand false
-                :width 20
-                :image-width 40
-                :image-height 40)
-              (box :hexpand true
-                :orientation "v"
-                :spacing 0
-                :space-evenly false
-                :geometry (geometry :width "100%"
-                            :height "1px"
-                            :anchor "top")
-                (label :wrap true
-                  :xalign 0
-                  :text {entry.summary.data})
-                (label :wrap true
-                  :xalign 0
-                  :yalign 0
-                  :text {entry.body.data}))
-              (button :hexpand false
-                :class "noticlose"
-                :width 20
-                :onclick `dunstctl history-rm ${entry.id.data} && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
-                (label :yalign 0.5
-                  :text "")))))))))
 
 (defwindow calenders ; Stands foor NOTIfication TABLE.
   :monitor 0
@@ -262,3 +146,147 @@
         (box :vexpand true
           :hexpand true 
           (calendar :class "bar calender"))))))
+
+(defwindow rightmarks
+  :monitor 0
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true
+  :geometry (geometry :focusable false
+              :width "30px"
+              :height "50%"
+              :anchor "right center")
+  (box :vexpand true
+    :hexpand false 
+    :class "bar "
+    :orientation "h"
+    :space-evenly false
+    (stack :transition "slideleft"
+      :selected selectedleftwindow
+      :same-size false
+      (mainwidget)
+      (label :class "headingname" :text "window 2")
+      (label :class "headingname" :text "window 3")
+      (label :class "headingname" :text "window 4"))
+    (box :vexpand true
+      :hexpand true
+      :orientation "v"
+      :geometry (geometry :ancher "center"
+                  :height "80px")
+      :height 20
+      (button :onclick `${EWW_CMD} update selectedleftwindow=0`
+        (label :gravity "east" :text "1"))
+      (button :onclick `${EWW_CMD} update selectedleftwindow=1`
+        (label :gravity "east" :text "2"))
+      (button :onclick `${EWW_CMD} update selectedleftwindow=2`
+        (label :gravity "east" :text "3"))
+      (button :onclick `${EWW_CMD} update selectedleftwindow=3`
+        (label :gravity "east" :text "4")))))
+
+(defwidget mainwidget []
+  (box :height 80
+    :vexpand true
+    :hexpand true
+    :space-evenly false
+    :orientation "v"
+    :class "mainlength"
+    (box :height 20
+      :class "mainlength"
+      :orientation "h"
+      :space-evenly false
+      :spacing 5
+      (image :path "./pot.jpg"
+        :image-width 120)
+      (box :orientation "v"
+        :vexpand true
+        (label :text "ejfdjv")
+        (label :class "headingname"
+          :xalign 1
+          :yalign 0.85
+          :text "Hi Bhaumik !")))))
+        ; This Widget is for banner and images
+    ; (box)
+    ; (box)))
+; It should have, clipboard, notification, general menu, wifi and bluetooth.
+
+
+
+;
+; (defwidget bar1 []
+;  (box :class "bar"
+;      (workspaces1)))
+;
+; (deflisten workspace1
+;   "scripts/workspace.sh 1")
+;
+; (defwidget workspaces1 []
+;   (literal :content workspace1))
+;
+; (defwindow bar1
+;   :monitor 1
+;   :windowtype "dock"
+;   :geometry (geometry :x "0%"
+;                       :y "10px"
+;                       :width "100%"
+;                       :height "20px"
+;                       :anchor "top center")
+;   :stacking "bt"
+;   :exclusive true
+;   :focusable false
+;   (bar1))
+;
+;
+; (defwindow rightmarks
+;   :monitor 0
+;   :stacking "fg"
+;   :windowtype "normal"
+;   :wm-ignore true
+;   :geometry (geometry :focusable false
+;               :width "30px"
+;               :height "50%"
+;               :anchor "right center")
+;   (box :vexpand true
+;     :hexpand false 
+;     :class "bar "
+;     :orientation "h"
+;     :space-evenly false
+;     (revealer 
+;         :orientation "h"
+;         :reveal mainwidget
+;         :duration "300ms"
+;         :transition "slideleft"
+;       (label :class "headingname"
+;         :gravity "east"
+;         :text "Bhaumik Tripathi"))
+;     (revealer 
+;         :orientation "h"
+;         :reveal secondwidget
+;         :duration "300ms"
+;         :transition "slideleft"
+;       "Window number 2")
+;     (revealer 
+;         :orientation "h"
+;         :reveal thirdwidget
+;         :duration "300ms"
+;         :transition "slideleft"
+;       "Window number 3")
+;     (revealer 
+;         :orientation "h"
+;         :reveal fourthwidget 
+;         :duration "300ms"
+;         :transition "slideleft"
+;       "Window number 4")
+;     (box :vexpand true
+;       :hexpand true
+;       :orientation "v"
+;       (button :onclick `${EWW_CMD} update mainwidget=true && ${EWW_CMD} update secondwidget=false && ${EWW_CMD} update thirdwidget=false && ${EWW_CMD} update fourthwidget=false`
+;         (label :gravity "east" :text "Some1"))
+;       (button :onclick `${EWW_CMD} update mainwidget=false && ${EWW_CMD} update secondwidget=true && ${EWW_CMD} update thirdwidget=false && ${EWW_CMD} update fourthwidget=false`
+;         (label :text "Some2" :gravity "east"))
+;       (button :onclick `${EWW_CMD} update mainwidget=false && ${EWW_CMD} update secondwidget=false && ${EWW_CMD} update thirdwidget=true && ${EWW_CMD} update fourthwidget=false`
+;         (label :text "Some3" :gravity "east"))
+;       (button :onclick `${EWW_CMD} update mainwidget=false && ${EWW_CMD} update secondwidget=false && ${EWW_CMD} update thirdwidget=false && ${EWW_CMD} update fourthwidget=true`
+;         (label :text "Some4" :gravity "east"))
+;       (button :onclick `${EWW_CMD} update mainwidget=false && ${EWW_CMD} update secondwidget=false && ${EWW_CMD} update thirdwidget=false && ${EWW_CMD} update fourthwidget=false`
+;         (label :text "Close" :gravity "east")))))
+

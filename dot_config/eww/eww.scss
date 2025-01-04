@@ -1,5 +1,6 @@
 * {
   all: unset; 
+	font-family: CaskaydiaCove NF;
 }
 	
 //Global Styles
@@ -124,6 +125,24 @@ padding: 0 10px;
         }
 }
 
+.notiremove {
+  font-size:0.75em;
+  border-radius: 0.5em;
+  padding-right: 7px;
+  padding-left: 7px;
+  // border-color: #eb6f92;
+  // border-width: 1;
+  &:hover {
+    transition: 200ms linear;
+    // border-color: #e0def4;
+    background-color: rgba(#eb6f92, 1);
+    color: rgba(#1f1d2e, 1);
+  }
+  &:active { 
+    background-color: rgba(#26233a,1); 
+        }
+}
+
 .noticlose {border-radius: 0em 1em 1em 0em;
   background: rgba(#191724, 1);
   &:hover {
@@ -139,5 +158,14 @@ padding: 0 10px;
   background-color: #26233a;
   margin: 2px 5px 2px 5px;
   padding: 5px;
+}
 
+.headingname {
+  font-family: Panchang Variable;
+  font-size: 2em;
+}
+
+.mainlength {
+  margin: 5;
+  border-radius: 1em;
 }

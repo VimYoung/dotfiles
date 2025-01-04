@@ -1,69 +1,163 @@
+// {
+//     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+//     "logo": {
+//         "padding": {
+//             "top": 5
+//         },
+//         "type": "small",
+//         "color": {"1": "magenta",
+//                   "2": "red"}
+//         },
+//     "display":{
+//         "color": {
+//                   "keys": "magenta",
+//                   "value":"blue",
+//                   "output":"cyan",
+//                   "separator": "red"
+//                 },
+//     },
+//     "modules": [
+//         // {
+//         //   "type": "logo",
+//         //   "source": "fedora",
+//         // },
+//         "title",
+//         //"separator",
+//         {
+//           "type": "custom",
+//           "format": "┌────────────────────────────────────────────────────────────────────┐" // `\u001b` is `\033`, or `\e`
+//         },
+//         "break",
+//         "os",
+//         "wm",
+//         {
+//             "type": "wmtheme",
+//             "key": "WM theme",
+//             "format": "Rosé Pine"
+//         },
+//         {
+//             "type": "host",
+//             "format": "{/2}{-}{/}{2}{?3} {3}{?}"
+//         },
+//         "kernel",
+//         "uptime",
+//         {
+//             "type": "battery",
+//             "format": "{/4}{-}{/}{4}{?5} [{5}]{?}"
+//         },
+//         "break",
+//         "packages",
+//         "shell",
+//         //"display",
+//         "terminal",
+//         "terminalfont",
+//         "break",
+//         // "cpu",
+//         // {
+//         //     "type": "gpu",
+//         //     "key": "GPU"
+//         // },
+//         "memory",
+//         "break",
+//         "icons",
+//         // "colors",
+//         {
+//           "type": "custom",
+//           "format": "└────────────────────────────────────────────────────────────────────┘" // `\u001b` is `\033`, or `\e`
+//         },
+//     ]
+// }
+//
+//
+// Inspired by Catnap
 {
-    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-    "logo": {
-        "padding": {
-            "top": 5
-        },
-        "type": "small",
-        "color": {"1": "magenta",
-                  "2": "red"}
-        },
-    "display":{
-        "color": {
-                  "keys": "magenta",
-                  "value":"blue",
-                  "output":"cyan",
-                  "separator": "red"
-                },
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "padding": {
+      "top": 3
     },
-    "modules": [
-        // {
-        //   "type": "logo",
-        //   "source": "fedora",
-        // },
-        "title",
-        //"separator",
-        {
-          "type": "custom",
-          "format": "┌────────────────────────────────────────────────────────────────────┐" // `\u001b` is `\033`, or `\e`
-        },
-        "break",
-        "os",
-        "wm",
-        {
-            "type": "wmtheme",
-            "key": "WM theme",
-            "format": "Rosé Pine"
-        },
-        {
-            "type": "host",
-            "format": "{/2}{-}{/}{2}{?3} {3}{?}"
-        },
-        "kernel",
-        "uptime",
-        {
-            "type": "battery",
-            "format": "{/4}{-}{/}{4}{?5} [{5}]{?}"
-        },
-        "break",
-        "packages",
-        "shell",
-        //"display",
-        "terminal",
-        "terminalfont",
-        "break",
-        // "cpu",
-        // {
-        //     "type": "gpu",
-        //     "key": "GPU"
-        // },
-        "memory",
-        "break",
-        "icons",
-        // "colors",
-        {
-          "type": "custom",
-          "format": "└────────────────────────────────────────────────────────────────────┘" // `\u001b` is `\033`, or `\e`
-        },
-    ]
+    "type": "small",
+    "color": {
+      "1": "magenta",
+      "2": "red"
+    }
+  },
+  // "logo": {
+  //     "source": "~/.config/fastfetch/yui-snafu.jpg",
+  //     "type": "sixel",
+  //     "height": 14,
+  //     "padding": {
+  //         "top": 1
+  //     }
+  // },
+  "display": {
+    "separator": " "
+  },
+  "modules": [
+    {
+      "key": "╭───────────╮",
+      "type": "custom"
+    },
+    {
+      "key": "│ {#31} user    {#keys}│",
+      "type": "title",
+      "format": "{user-name}"
+    },
+    {
+      "key": "│ {#32}󰇅 hname   {#keys}│",
+      "type": "title",
+      "format": "{host-name}"
+    },
+    {
+      "key": "│ {#33}󰅐 uptime  {#keys}│",
+      "type": "uptime"
+    },
+    {
+      "key": "│ {#34}{icon} distro  {#keys}│",
+      "type": "os"
+    },
+    {
+      "key": "│ {#35} kernel  {#keys}│",
+      "type": "kernel"
+    },
+    {
+      "key": "│ {#36}󰇄 desktop {#keys}│",
+      "type": "de"
+    },
+    {
+      "key": "│ {#31} term    {#keys}│",
+      "type": "terminal"
+    },
+    {
+      "key": "│ {#32} shell   {#keys}│",
+      "type": "shell"
+    },
+    {
+      "key": "│ {#33}󰍛 cpu     {#keys}│",
+      "type": "cpu",
+      "showPeCoreCount": true
+    },
+    {
+      "key": "│ {#34}󰉉 disk    {#keys}│",
+      "type": "disk",
+      "folders": "/"
+    },
+    {
+      "key": "│ {#35} memory  {#keys}│",
+      "type": "memory"
+    },
+    {
+      "key": "├───────────┤",
+      "type": "custom"
+    },
+    {
+      "key": "│ {#39} colors  {#keys}│",
+      "type": "colors",
+      "symbol": "circle"
+    },
+    {
+      "key": "╰───────────╯",
+      "type": "custom"
+    }
+  ]
 }

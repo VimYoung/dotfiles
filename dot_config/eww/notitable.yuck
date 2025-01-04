@@ -1,0 +1,70 @@
+(defwidget notilist []
+  (box :hexpand true
+    :width 350
+    :vexpand true
+    :space-evenly false
+    :orientation "v"
+    :class "bar"
+    (box :class "notiheading text" 
+      :space-evenly false
+      :hexpand true
+      :spacing 6
+      :geometry (geometry :height "30px"
+                  :anchor "top left")
+      (button :class "notirefresh bar"
+        :onclick `${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
+          (label :css "margin: 2px;":xalign 0 :text "󰑐"))
+      (button :class "notiremove bar"
+        :onclick `dunstctl history-clear && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
+          (label :css "margin: 2px;":xalign 0 :text ""))
+      (label :xalign 1
+        :hexpand true
+        :text "Notifications")) 
+    (box :vexpand true
+      :hexpand true
+      :orientation "v"
+      :space-evely false
+      :geometry (geometry :width "100%")
+      (scroll :vscroll true
+        :hscroll false
+        :space-evely false
+        :vexpand false
+        :orientation "v"
+        (box :orientation "v"
+          :hexpand true
+          :vexpand false
+          :geometry (geometry :width "100%")
+          :spacing 5
+          :space-evenly false
+          (for entry in notijson
+            (box :hexpand true
+              :class "bar card"
+              :orientaton "h"
+              :space-evenly false
+              (image :class "notiimage"
+                :path {entry.icon_path.data}
+                :hexpand false
+                :width 20
+                :image-width 40
+                :image-height 40)
+              (box :hexpand true
+                :orientation "v"
+                :spacing 0
+                :space-evenly false
+                :geometry (geometry :width "100%"
+                            :height "1px"
+                            :anchor "top")
+                (label :wrap true
+                  :xalign 0
+                  :text {entry.summary.data})
+                (label :wrap true
+                  :xalign 0
+                  :yalign 0
+                  :text {entry.body.data}))
+              (button :hexpand false
+                :class "noticlose"
+                :width 20
+                :onclick `dunstctl history-rm ${entry.id.data} && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
+                (label :yalign 0.5
+                  :text "")))))))))
+ 
