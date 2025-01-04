@@ -12,3 +12,6 @@ README.md
 .config/ranger/__pycache__/**
 .config/ranger/plugins
 .config/ranger/plugins/**
+
+# Rust related
+*/target/

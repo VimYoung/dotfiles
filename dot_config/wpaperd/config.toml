@@ -1,0 +1,12 @@
+[default]
+duration = "1day"
+mode = "center"
+sorting = "ascending"
+path = "/home/bhaumik/assets/wallpapers/Samuri/"
+
+[eDP-1]
+path = "/home/bhaumik/assets/wallpapers/Samuri/"
+# path = "/home/bhaumik/assets/wallpapers/Dark/"
+# path = "/home/bhaumik/assets/wallpapers/Nature/"
+# path = "/home/bhaumik/assets/wallpapers/Thoughts/"
+

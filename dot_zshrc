@@ -24,6 +24,7 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH=$PATH:/home/bhaumik/bin
 export PATH="$HOME/.local/bin:$PATH"
 export GTK_THEME=Catppuccin-Dark
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib64/
 
 eval "$(zoxide init zsh)"
 eval "$(oh-my-posh init zsh --config ~/assets/command-prompt-ohmyposh/bubbles_custom.omp.json)"
@@ -43,4 +44,3 @@ antigen apply
 
 ## Aliases
 alias width="xdpyinfo | awk '/dimensions/{print $2}' | tr 'x' '\n' | sed -n '2p'"
-
