@@ -1,5 +1,7 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.coding.nvim-cmp",
+    "lazyvim.plugins.extras.editor.harpoon2",
     "lazyvim.plugins.extras.editor.illuminate",
     "lazyvim.plugins.extras.lang.java",
     "lazyvim.plugins.extras.lang.json",
