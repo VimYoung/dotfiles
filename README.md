@@ -10,8 +10,6 @@ These dotfiles are not made to be worked for every system. It is just a showcase
 anyone finds something interesting, they can surely adopt it in their files. Still, any suggestions and
 improvements are welcomed. Feel free to open an issue.
 
-This commit marks the most baseline workable config without any ricing and future iterations will be a
-testimony of how things evolve in commparison to, this commit.
 
 ## Scripts InUse
 
@@ -19,9 +17,6 @@ testimony of how things evolve in commparison to, this commit.
 ### Eww scripts
 ### Hyprlock Scripts
 ### Neomutt Scripts.
-
-
-### Motivation
 
 ### Showcase
 
@@ -63,7 +58,7 @@ utilities I like in General (marked with **G**).
 | Description | Tool |
 | ------------- | ------------- |
 | Distro        | Arch |
-| App Launcher | Rofi [^1]|
+| App Launcher | Rofi[^1]|
 | Filemanager | <ul><li><b>Primary:</b> Superfile </li><li><b>GUI/Secondary</b> Thunar </li></ul>
 | Video Player| mpv player |
 |Terminal | Alacritty|
@@ -76,7 +71,15 @@ utilities I like in General (marked with **G**).
 | IRC client | Irssi |
 
 
-### Acknowledgement
+Few of "design decisions" which might seem different to others is due to following reasons.
+1. This config is used by me on my laptop, hence a concurrent absence of spacing and floating
+topbar is eminent for saving space.
+2. The config doesn't do anything more than making hyprland look descent and workable.
+3. I still don't use half of the utilities I will mention at their full keyboard configs, hence these
+are underutilised, as they will fit more in my muscle memory, I shall add more keybinds for them.
+4. The config doesn't try to rice apps, at least for now. I will eventually add them but after all the
+above checkboxes are met, I might add app rices too, and 2-3 more themes with pywal just so that my eyes
+don't get tired of seeing Rose Piné.
 
 ### Future work
 
@@ -89,4 +92,4 @@ I want to add in the workflow, it serves as a reference to what changes can come
 ---
 ### References
 
-[1]: hello
+[^1]: Reference to rofi.
