@@ -18,9 +18,9 @@ improvements are welcomed. Feel free to open an issue.
 ### Hyprlock Scripts
 ### Neomutt Scripts.
 
-### Showcase
+## Showcase
 
-### Utilities
+## Utilities
 
 | Description   | Tool          |
 | ------------- | ------------- |
@@ -47,7 +47,7 @@ improvements are welcomed. Feel free to open an issue.
 |Email Client | <ul><li><b>primary:</b> Neomutt with notmuch and leer </li><li><b>gui/secondary</b> Thunderbird with html wraping disabled </li></ul> |
 | Fonts | todo list of all fonts |
 
-### Utilities archive
+## Utilities archive
 
 This list contains the utilities I like in general and consider them worth
 mentioning along with my current in use utilities. These contains utilities
@@ -69,6 +69,7 @@ utilities I like in General (marked with **G**).
 |MPD client| kew |
 |Email Client | <ul><li><b>primary:</b> Aerc</li><li><b>gui/secondary</b> ProtonMail with html wraping disabled </li></ul> |
 | IRC client | Irssi |
+|PDF Viewer | Zathura |
 
 
 Few of "design decisions" which might seem different to others is due to following reasons.
@@ -81,7 +82,7 @@ are underutilised, as they will fit more in my muscle memory, I shall add more k
 above checkboxes are met, I might add app rices too, and 2-3 more themes with pywal just so that my eyes
 don't get tired of seeing Rose Piné.
 
-### Future work
+## Future work
 
 Okay, so this section maintains as a todo list for the annoying things I want to stop and new tools/features
 I want to add in the workflow, it serves as a reference to what changes can come next.
@@ -90,6 +91,6 @@ I want to add in the workflow, it serves as a reference to what changes can come
 - [ ] todo 2
 
 ---
-### References
+## References
 
 [^1]: Reference to rofi.
