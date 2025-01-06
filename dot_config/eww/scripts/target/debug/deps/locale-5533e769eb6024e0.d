@@ -1,0 +1,11 @@
+/home/bhaumik/.local/share/chezmoi/dot_config/eww/scripts/target/debug/deps/liblocale-5533e769eb6024e0.rmeta: /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/lib.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/mod.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/ffi.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/langinfo.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/macos/mod.rs
+
+/home/bhaumik/.local/share/chezmoi/dot_config/eww/scripts/target/debug/deps/liblocale-5533e769eb6024e0.rlib: /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/lib.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/mod.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/ffi.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/langinfo.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/macos/mod.rs
+
+/home/bhaumik/.local/share/chezmoi/dot_config/eww/scripts/target/debug/deps/locale-5533e769eb6024e0.d: /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/lib.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/mod.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/ffi.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/langinfo.rs /home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/macos/mod.rs
+
+/home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/lib.rs:
+/home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/mod.rs:
+/home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/ffi.rs:
+/home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/linux/langinfo.rs:
+/home/bhaumik/.cargo/registry/src/index.crates.io-6f17d22bba15001f/locale-0.2.2/src/macos/mod.rs:

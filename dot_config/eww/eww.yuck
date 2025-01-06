@@ -154,7 +154,7 @@
   :wm-ignore true
   :geometry (geometry :focusable false
               :width "30px"
-              :height "50%"
+              :height "70%"
               :anchor "right center")
   (box :vexpand true
     :hexpand false 
@@ -194,7 +194,7 @@
       :class "mainlength"
       :orientation "h"
       :space-evenly false
-      :spacing 5
+      :spacing 9
       (image :path "./pot.jpg"
         :image-width 120)
       (box :orientation "v"
@@ -202,7 +202,7 @@
         (label :text "ejfdjv")
         (label :class "headingname"
           :xalign 1
-          :yalign 0.85
+          :yalign 0.7
           :text "Hi Bhaumik !")))))
         ; This Widget is for banner and images
     ; (box)
