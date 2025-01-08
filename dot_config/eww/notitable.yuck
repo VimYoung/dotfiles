@@ -1,25 +1,11 @@
 (defwidget notilist []
   (box :hexpand true
-    :width 350
+    :height 733
     :vexpand true
     :space-evenly false
     :orientation "v"
     :class "bar"
-    (box :class "notiheading text" 
-      :space-evenly false
-      :hexpand true
-      :spacing 6
-      :geometry (geometry :height "30px"
-                  :anchor "top left")
-      (button :class "notirefresh bar"
-        :onclick `${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
-          (label :css "margin: 2px;":xalign 0 :text "󰑐"))
-      (button :class "notiremove bar"
-        :onclick `dunstctl history-clear && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
-          (label :css "margin: 2px;":xalign 0 :text ""))
-      (label :xalign 1
-        :hexpand true
-        :text "Notifications")) 
+     
     (box :vexpand true
       :hexpand true
       :orientation "v"
@@ -66,5 +52,19 @@
                 :width 20
                 :onclick `dunstctl history-rm ${entry.id.data} && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
                 (label :yalign 0.5
-                  :text "")))))))))
+                  :text "")))))))
+    (box :class "notiheading text" 
+      :space-evenly false
+      :hexpand true
+      :spacing 6
+      (button :class "notirefresh bar"
+        :onclick `${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
+          (label :css "margin: 2px;":xalign 0 :text "󰑐"))
+      (button :class "notiremove bar"
+        :onclick `dunstctl history-clear && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
+          (label :css "margin: 2px;":xalign 0 :text ""))
+      (button :vexpand true :hexpand true :onclick `${EWW_CMD} update notiopen=false` " ")
+      (label :xalign 1
+        :text "Notifications"
+        :text "Notifications"))))
  

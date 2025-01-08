@@ -1,4 +1,23 @@
 (include "./notitable.yuck")
+(defpoll time :interval "1s"
+              :initial "Time not parsed"
+  `date +'{"hour":"%I","min":"%M", "sec":"%S", "ampm":"%p", "day": "%A", "date": "%d%b,%g"}'`)
+(defpoll volume :interval "1s"
+  :initial "time"
+  :run-while true 
+  `awk -F"[][]" '/Left:/ { gsub(/%/, "", $2); print $2 }' <(amixer sget Master)`)
+(defpoll volume_percent :interval "6s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+
+; (deflisten imgmpris :initial "/home/bhaumik/assets/nomusic.png"
+;   `playerctl --follow metadata mpris:artUrl | awk '{sub(/^file:\/\//, ""); print}'`)
+(deflisten imgmpris :initial "/home/bhaumik/assets/nomusic.png"
+  `playerctl --follow metadata mpris:artUrl | sed -u 's|^file://||'`)
+(deflisten titlempris :initial "No music playing"
+  `playerctl --follow metadata --format {{title}}`)
+(deflisten artistmpris :initial "No artist"
+  `playerctl --follow metadata --format {{artist}}`)
+(deflisten albummpris :initial "No album"
+  `playerctl --follow metadata --format {{album}}`)
 
 (defvar test false)
 (defvar notijson "")
@@ -9,14 +28,7 @@
 (defvar thirdwidget false)
 (defvar fourthwidget false)
 (defvar selectedleftwindow false)
-
-
-(defwidget workspaces []
- (box :class "bar"
-     (literal :content workspace0)))
-
-(deflisten workspace0
-  "scripts/workspace.sh 0")
+(defvar rightmarks false)
 
 (defwindow workspaces
   :monitor 0
@@ -28,6 +40,13 @@
   :exclusive true
   :focusable false
   (workspaces))
+
+(defwidget workspaces []
+ (box :class "bar"
+     (literal :content workspace0)))
+
+(deflisten workspace0
+  "scripts/workspace.sh 0")
 
 (defwindow screenshot
   :monitor 0
@@ -97,28 +116,27 @@
   :windowtype "normal"
   :wm-ignore true 
   :geometry (geometry :focusable false
-              :width "5px"
-              :height "95%"
-              :anchor "right top")
+              :width "30%"
+              :height "5px"
+              :anchor "left bottom")
   (notiopener))
 
 (defwidget notiopener []
   (eventbox
-    :orientation "v"
-    :onhover `${EWW_CMD} update notiopen=true`
-    :onhoverlost `${EWW_CMD} update notiopen=false`
+    :orientation "h"
+    :onclick `${EWW_CMD} update notiopen=true`
     (box :hexpand true
-      :orientation "v"
+      :orientation "h"
       :vexpand true
       (revealer 
-        :orientation "v"
+        :orientation "h"
         :reveal notiopen
         :duration "300ms"
-        :transition "slideleft"
+        :transition "slideup"
         (notilist)))))
 
 
-(defwindow calenders ; Stands foor NOTIfication TABLE.
+(defwindow calenders
   :monitor 0
   :stacking "fg"
   :windowtype "normal"
@@ -154,13 +172,29 @@
   :wm-ignore true
   :geometry (geometry :focusable false
               :width "30px"
-              :height "70%"
+              :height "80%"
               :anchor "right center")
+  (eventbox
+    :orientation "v"
+    :onhover `${EWW_CMD} update rightmarks=true`
+    :onhoverlost `${EWW_CMD} update rightmarks=false`
+    (box :hexpand true
+      :orientation "v"
+      :vexpand true
+      (revealer 
+        :orientation "v"
+        :reveal rightmarks
+        :duration "300ms"
+        :transition "slideleft"
+        (rightmarks)))))
+
+(defwidget rightmarks []
   (box :vexpand true
     :hexpand false 
-    :class "bar "
+    :class "bar mainwidg"
     :orientation "h"
     :space-evenly false
+    :style "border-radius: 20 0 0 20;margin: 40 0 40 40;box-shadow: rgba(0, 0, 0, 0.76) 0px 0px 15px 15px; padding: 1 0 1 5;" ;box-shadow: rgba(0, 0, 0, 0.76) 5px 15px 15px 15px;"
     (stack :transition "slideleft"
       :selected selectedleftwindow
       :same-size false
@@ -173,15 +207,15 @@
       :orientation "v"
       :geometry (geometry :ancher "center"
                   :height "80px")
-      :height 20
-      (button :onclick `${EWW_CMD} update selectedleftwindow=0`
-        (label :gravity "east" :text "1"))
+      (button :class "test" :onclick `${EWW_CMD} update selectedleftwindow=0`
+        (label :text "1" :gravity "east"))
       (button :onclick `${EWW_CMD} update selectedleftwindow=1`
-        (label :gravity "east" :text "2"))
+        (label :text "2" :gravity "east"))
       (button :onclick `${EWW_CMD} update selectedleftwindow=2`
-        (label :gravity "east" :text "3"))
+        (label :text "3" :gravity "east"))
       (button :onclick `${EWW_CMD} update selectedleftwindow=3`
-        (label :gravity "east" :text "4")))))
+        (label :text "4"
+          :gravity "east")))))
 
 (defwidget mainwidget []
   (box :height 80
@@ -190,28 +224,138 @@
     :space-evenly false
     :orientation "v"
     :class "mainlength"
+    :spacing 5
     (box :height 20
       :class "mainlength"
       :orientation "h"
       :space-evenly false
       :spacing 9
+      :style "box-shadow: inset 0 -3px #9ccfd8; padding: 4; border-radius: 0;"
       (image :path "./pot.jpg"
         :image-width 120)
       (box :orientation "v"
-        :vexpand true
-        (label :text "ejfdjv")
+        :spacing 8
+        :valign "center"
+        :space-evenly false
+        (button :class "time mainwidg bar shadow"
+          (box :orientation "v"
+            (box :spacing 0
+              :vexpand true
+              :valign "baseline"
+              :halign "center"
+              (label :class "mainwidgback1 mainwidg" :text {time.hour})
+              (label :text ":")
+              (label :class "mainwidgback1 mainwidg" :text {time.min})
+              (label :text ":")
+              (label :class "mainwidgback1 mainwidg" :text {time.sec})
+              (label :text {time.ampm}))
+            (box :spacing 4
+              (label :text {time.day}
+                :xalign 0)
+              (label :text {time.date}
+                :xalign 1))))
         (label :class "headingname"
           :xalign 1
           :yalign 0.7
-          :text "Hi Bhaumik !")))))
-        ; This Widget is for banner and images
-    ; (box)
-    ; (box)))
-; It should have, clipboard, notification, general menu, wifi and bluetooth.
+          :text "Hi Bhaumik !")))
+    (box :orientation "h"
+      :spacing 12
+      (button :class "mainwidg time shadow redbutton"
+        :style "padding: 7 0;"
+        :onclick  `paplay ~/Downloads/buttonclick.wav`
+        (label :text ""))
+      (button :class "mainwidg time shadow yellowbutton"
+        :style "padding: 7 0;"
+        :onclick  `paplay ~/Downloads/buttonclick.wav`
+        (label :text ""));
+      (button :class "mainwidg time shadow bluebutton"
+        :onclick  `${EWW_CMD} update rightmarks=false && hyprpicker | wl-copy && dunstify " System" "Color copied to clipboard!"`
+        :style "padding: 7 0;"
+        (label :text "󰄀")))
+    (box :orientation "h"
+      :spacing 12
+      (button :class "mainwidg time shadow bluebutton"
+        :onclick  `paplay ~/Downloads/buttonclick.wav && hyprlock`
+        :style "padding: 7 0;"
+        (label :text ""))
+      (button :class "mainwidg time shadow purplebutton"
+        :onclick  `paplay ~/Downloads/buttonclick.wav`
+        :style "padding: 7 0;"
+        (label :text ""))
+      (button :class "mainwidg time shadow redbutton"
+        :onclick  `paplay ~/Downloads/buttonclick.wav`
+        :style "padding: 7 0;"
+        (label :text "󰋱")))
+    (box :orientation "h"
+      :space-evenly false
+      (box :orientation "v"
+        :class "mainwidg shadow"
+        :style "margin: 4 0 0 6;"
+        :spacing 0
+        :space-evenly false
+        (label :style "padding: 4 0 2 0;"
+          :limit-width 15
+          :yalign 0
+          :text {titlempris ?: "No Title"})
+        (box :orientation "h"
+          :width 10
+          :space-evenly false
+          :hexpand true
+          :spacing 2
+          :class "time"
+          (button :class "mainwidg mainwidgback1 bar shadow" :style "padding: 0 6; border-radius: 1em 0 0 1em;" 
+            :onclick `playerctl previous`
+            :hexpand true "")
+          (image :path imgmpris
+            :class "mainwidg"
+            :preserve-aspect-ratio true
+            :image-height 90)
+          (button :class "mainwidg mainwidgback1 bar shadow" :style "padding: 0 6; border-radius: 0 1em 1em 0;" 
+            :onclick `playerctl next`
+            :hexpand true ""))
+        (box :orientation "h"
+          :style "padding: 0 0 4 0; margin: 0 4;"
+          :space-evenly false
+          :spacing 7
+          :class "mainwidg time"
+          (button :class "mainwidg mainwidgback1 bar shadow" :style "padding: 2 0; border-radius: 1em 0 0 1em;" :hexpand true
+            :onclick `playerctl position 10-`
+            (label :xalign 0.65 :text "󰴪"))
+          (button :class "mainwidg mainwidgback1 bar shadow" :style "border-radius: 0;" :onclick `playerctl play-pause`
+            (label :style "padding: 0 4; margin:4;":text " 󰐎"))
+          (button :class "mainwidg mainwidgback1 bar shadow" :style "padding: 2 0; border-radius: 0 1em 1em 0;" :hexpand true
+            :onclick `playerctl position 10+`
+            (label :xalign 0.35 :text "󰵱")))
+        (box :orientation "h"
+          :style "padding: 0 2 5 2;"
+          :spacing 10
+          (box :orientation "v"
+            (label :style "font-weight: bold;" :xalign 0 :text "Artist:")
+            (label :text artistmpris :limit-width 7))
+          (box :orientation "v"
+            (label :style "font-weight: bold;" :xalign 1 :text "Album:")
+            (label :text albummpris :limit-width 7))))
+      (box :orientation "v"
+        :class "volume_bar"
+        :hexpand true
+        (label :text "volume bars ${volume}")
+        (scale :orientation "h"
+          :hexpand true
+          :value 30.0)))
+    (box :orientation "h"
+      (label :text "graphs and graphs of memory"))))
 
+(defwindow foo
+  :monitor 0
+  (box
+    :class "mem_bar"
+    :orientation "h"
+    (scale
+      :hexpand true
+      :min 0
+      :max 100
+    :value {EWW_RAM.used_mem_perc})))
 
-
-;
 ; (defwidget bar1 []
 ;  (box :class "bar"
 ;      (workspaces1)))
@@ -234,59 +378,3 @@
 ;   :exclusive true
 ;   :focusable false
 ;   (bar1))
-;
-;
-; (defwindow rightmarks
-;   :monitor 0
-;   :stacking "fg"
-;   :windowtype "normal"
-;   :wm-ignore true
-;   :geometry (geometry :focusable false
-;               :width "30px"
-;               :height "50%"
-;               :anchor "right center")
-;   (box :vexpand true
-;     :hexpand false 
-;     :class "bar "
-;     :orientation "h"
-;     :space-evenly false
-;     (revealer 
-;         :orientation "h"
-;         :reveal mainwidget
-;         :duration "300ms"
-;         :transition "slideleft"
-;       (label :class "headingname"
-;         :gravity "east"
-;         :text "Bhaumik Tripathi"))
-;     (revealer 
-;         :orientation "h"
-;         :reveal secondwidget
-;         :duration "300ms"
-;         :transition "slideleft"
-;       "Window number 2")
-;     (revealer 
-;         :orientation "h"
-;         :reveal thirdwidget
-;         :duration "300ms"
-;         :transition "slideleft"
-;       "Window number 3")
-;     (revealer 
-;         :orientation "h"
-;         :reveal fourthwidget 
-;         :duration "300ms"
-;         :transition "slideleft"
-;       "Window number 4")
-;     (box :vexpand true
-;       :hexpand true
-;       :orientation "v"
-;       (button :onclick `${EWW_CMD} update mainwidget=true && ${EWW_CMD} update secondwidget=false && ${EWW_CMD} update thirdwidget=false && ${EWW_CMD} update fourthwidget=false`
-;         (label :gravity "east" :text "Some1"))
-;       (button :onclick `${EWW_CMD} update mainwidget=false && ${EWW_CMD} update secondwidget=true && ${EWW_CMD} update thirdwidget=false && ${EWW_CMD} update fourthwidget=false`
-;         (label :text "Some2" :gravity "east"))
-;       (button :onclick `${EWW_CMD} update mainwidget=false && ${EWW_CMD} update secondwidget=false && ${EWW_CMD} update thirdwidget=true && ${EWW_CMD} update fourthwidget=false`
-;         (label :text "Some3" :gravity "east"))
-;       (button :onclick `${EWW_CMD} update mainwidget=false && ${EWW_CMD} update secondwidget=false && ${EWW_CMD} update thirdwidget=false && ${EWW_CMD} update fourthwidget=true`
-;         (label :text "Some4" :gravity "east"))
-;       (button :onclick `${EWW_CMD} update mainwidget=false && ${EWW_CMD} update secondwidget=false && ${EWW_CMD} update thirdwidget=false && ${EWW_CMD} update fourthwidget=false`
-;         (label :text "Close" :gravity "east")))))
-
