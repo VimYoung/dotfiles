@@ -1,0 +1,24 @@
+# vim: filetype=muttrc
+
+source ~/.config/neomutt/settings
+source ~/.config/neomutt/colors
+source ~/.config/neomutt/mappings
+
+# Accounts
+set nm_db_limit = 5000
+set nm_default_url = "notmuch:///home/bhaumik/mail"
+set mbox_type = Maildir
+
+
+set spoolfile = "Inbox"
+virtual-mailboxes "Inbox" "notmuch://?query=(tag:inbox -tag:promotions -tag:social) OR (tag:inbox and tag:flagged)"
+virtual-mailboxes "Archive" "notmuch://?query=not tag:inbox and not tag:spam "
+virtual-mailboxes "Personal" "notmuch://?query=tag:personal"
+virtual-mailboxes "Flagged" "notmuch://?query=tag:flagged"
+virtual-mailboxes "Promotions" "notmuch://?query=tag:promotions"
+virtual-mailboxes "Social" "notmuch://?query=tag:social"
+virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
+
+set sendmail = "gmi send -t -C /home/bhaumik/mail/"
+set index_format='%4C %Z %<[y?%<[m?%<[d?%[%l:%M%p ]&%[%a %d ]>&%[%b %d ]>&%[%m/%y ]> %-15.15L %s %g'
+
