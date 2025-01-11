@@ -2,14 +2,20 @@
 (defpoll time :interval "1s"
               :initial "Time not parsed"
   `date +'{"hour":"%I","min":"%M", "sec":"%S", "ampm":"%p", "day": "%A", "date": "%d%b,%g"}'`)
-(defpoll volume :interval "1s"
-  :initial "time"
-  :run-while true 
+(defpoll volume :interval "0.5s"
   `awk -F"[][]" '/Left:/ { gsub(/%/, "", $2); print $2 }' <(amixer sget Master)`)
-(defpoll volume_percent :interval "6s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 
-; (deflisten imgmpris :initial "/home/bhaumik/assets/nomusic.png"
-;   `playerctl --follow metadata mpris:artUrl | awk '{sub(/^file:\/\//, ""); print}'`)
+(defpoll brightness :interval "0.5s"
+  `echo "scale=2; ($(brightnessctl g) / $(brightnessctl m)) * 100" | bc`)
+(defpoll microphone :interval "0.5s"
+  `amixer get Capture | grep -oP '\d+(?=%)' | head -n 1`)
+(defpoll uptime :interval "120s"
+  :initial "error"
+  `uptime -p | sed -uE 's/up ([0-9]+) hours?, ([0-9]+) minutes?/\1 hr, \2m/'`)
+(defpoll kernel :interval "15h"
+  :initial "error"
+  `uname -r | sed -u 's/-.*//'`)
+
 (deflisten imgmpris :initial "/home/bhaumik/assets/nomusic.png"
   `playerctl --follow metadata mpris:artUrl | sed -u 's|^file://||'`)
 (deflisten titlempris :initial "No music playing"
@@ -171,7 +177,7 @@
   :windowtype "normal"
   :wm-ignore true
   :geometry (geometry :focusable false
-              :width "30px"
+              :width "5px"
               :height "80%"
               :anchor "right center")
   (eventbox
@@ -207,14 +213,14 @@
       :orientation "v"
       :geometry (geometry :ancher "center"
                   :height "80px")
-      (button :class "test" :onclick `${EWW_CMD} update selectedleftwindow=0`
-        (label :text "1" :gravity "east"))
-      (button :onclick `${EWW_CMD} update selectedleftwindow=1`
-        (label :text "2" :gravity "east"))
-      (button :onclick `${EWW_CMD} update selectedleftwindow=2`
-        (label :text "3" :gravity "east"))
-      (button :onclick `${EWW_CMD} update selectedleftwindow=3`
-        (label :text "4"
+      (button :class "redbutton" :onclick `${EWW_CMD} update selectedleftwindow=0`
+        (label :text " " :gravity "east"))
+      (button :class "purplebutton" :onclick `${EWW_CMD} update selectedleftwindow=1`
+        (label :text " " :gravity "east"))
+      (button :class "bluebutton" :onclick `${EWW_CMD} update selectedleftwindow=2`
+        (label :text " " :gravity "east"))
+      (button :class "yellowbutton" :onclick `${EWW_CMD} update selectedleftwindow=3`
+        (label :style "color: ":text "4"
           :gravity "east")))))
 
 (defwidget mainwidget []
@@ -288,18 +294,20 @@
         (label :text "󰋱")))
     (box :orientation "h"
       :space-evenly false
+      :spacing 12
       (box :orientation "v"
         :class "mainwidg shadow"
         :style "margin: 4 0 0 6;"
         :spacing 0
         :space-evenly false
-        (label :style "padding: 4 0 2 0;"
+        (label :style "padding: 9 0 2 0;"
           :limit-width 15
           :yalign 0
           :text {titlempris ?: "No Title"})
         (box :orientation "h"
           :width 10
           :space-evenly false
+          :style "padding: 0;"
           :hexpand true
           :spacing 2
           :class "time"
@@ -309,6 +317,7 @@
           (image :path imgmpris
             :class "mainwidg"
             :preserve-aspect-ratio true
+            :image-width 90
             :image-height 90)
           (button :class "mainwidg mainwidgback1 bar shadow" :style "padding: 0 6; border-radius: 0 1em 1em 0;" 
             :onclick `playerctl next`
@@ -320,12 +329,12 @@
           :class "mainwidg time"
           (button :class "mainwidg mainwidgback1 bar shadow" :style "padding: 2 0; border-radius: 1em 0 0 1em;" :hexpand true
             :onclick `playerctl position 10-`
-            (label :xalign 0.65 :text "󰴪"))
+            (label :xalign 0.65 :text "❮"))
           (button :class "mainwidg mainwidgback1 bar shadow" :style "border-radius: 0;" :onclick `playerctl play-pause`
             (label :style "padding: 0 4; margin:4;":text " 󰐎"))
           (button :class "mainwidg mainwidgback1 bar shadow" :style "padding: 2 0; border-radius: 0 1em 1em 0;" :hexpand true
             :onclick `playerctl position 10+`
-            (label :xalign 0.35 :text "󰵱")))
+            (label :xalign 0.35 :text "❯")))
         (box :orientation "h"
           :style "padding: 0 2 5 2;"
           :spacing 10
@@ -336,25 +345,57 @@
             (label :style "font-weight: bold;" :xalign 1 :text "Album:")
             (label :text albummpris :limit-width 7))))
       (box :orientation "v"
-        :class "volume_bar"
+        :spacing 12
+        :class "mainwidg"
+        :style "margin: 4 0 0 0;"
         :hexpand true
-        (label :text "volume bars ${volume}")
-        (scale :orientation "h"
+        (box :orientation "v"
           :hexpand true
-          :value 30.0)))
+          :class "mainwidg bar shadow"
+          :spacing 0
+          :style "margin: 0;"
+          (box :orientation "h"
+            :class "mainwidg"
+            :spacing 15
+            :space-evenly false
+            :style "margin: 4 0 0 0;"
+            (label :style "color: rgba(#c4a7e7,1);" :xalign 0.5 :hexpand true :text "")
+            (scale :orientation "h"
+              :value volume
+              :max 101
+              :min 0
+              :onchange `amixer set Master {}%`))
+          (box :orientation "h"
+            :class "mainwidg"
+            :spacing 15
+            :space-evenly false
+            :style "margin: 2 0 0 0;"
+            (label :style "color: rgba(#c4a7e7,1);" :xalign 0.5 :hexpand true :text "")
+            (scale :orientation "h"
+              :value microphone
+              :class "purpleslide"
+              :max 101
+              :min 0
+              :onchange `amixer set Capture {}%`))
+          (box :orientation "h"
+            :class "mainwidg"
+            :spacing 15
+            :space-evenly false
+            :style "margin: 2 0 4 0;"
+            (label :style "color: rgba(#c4a7e7,1);" :xalign 0.5 :hexpand true :text "󰃠")
+            (scale :orientation "h"
+              :value brightness
+              :max 101
+              :min 0
+              :onchange `brightnessctl s {}%`)))
+        (box :orientation "v"
+          :class "mainwidg bar shadow"
+          :style "margin: 0;"
+          (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "OS: Fedora")
+          (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "Kernel: ${kernel}")
+          (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "Up: ${uptime}"))))
     (box :orientation "h"
       (label :text "graphs and graphs of memory"))))
-
-(defwindow foo
-  :monitor 0
-  (box
-    :class "mem_bar"
-    :orientation "h"
-    (scale
-      :hexpand true
-      :min 0
-      :max 100
-    :value {EWW_RAM.used_mem_perc})))
 
 ; (defwidget bar1 []
 ;  (box :class "bar"
