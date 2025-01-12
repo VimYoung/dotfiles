@@ -44,3 +44,7 @@ antigen apply
 
 ## Aliases
 alias width="xdpyinfo | awk '/dimensions/{print $2}' | tr 'x' '\n' | sed -n '2p'"
+alias v='nvim' # default Neovim config
+alias vp='NVIM_APPNAME=nvim-pckr nvim' # LazyVim
+alias vc='NVIM_APPNAME=nvim-custom nvim' # LunarVim
+alias peaclock="peaclock --config-dir ~/.config/peaclock"
