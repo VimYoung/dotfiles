@@ -35,6 +35,7 @@
 (defvar fourthwidget false)
 (defvar selectedleftwindow false)
 (defvar rightmarks false)
+(defvar lock "hyprlock && paplay ~/Downloads/buttonclick.wav")
 
 (defwindow workspaces
   :monitor 0
@@ -178,7 +179,7 @@
   :wm-ignore true
   :geometry (geometry :focusable false
               :width "5px"
-              :height "80%"
+              :height "95%"
               :anchor "right center")
   (eventbox
     :orientation "v"
@@ -211,8 +212,7 @@
     (box :vexpand true
       :hexpand true
       :orientation "v"
-      :geometry (geometry :ancher "center"
-                  :height "80px")
+      :spacing 5
       (button :class "redbutton" :onclick `${EWW_CMD} update selectedleftwindow=0`
         (label :text " " :gravity "east"))
       (button :class "purplebutton" :onclick `${EWW_CMD} update selectedleftwindow=1`
@@ -268,28 +268,34 @@
       :spacing 12
       (button :class "mainwidg time shadow redbutton"
         :style "padding: 7 0;"
-        :onclick  `paplay ~/Downloads/buttonclick.wav`
+        :timeout "5000ms"
+        :onclick  `paplay ~/Downloads/buttonclick.wav && systemd-run --user flatpak run com.obsproject.Studio`
         (label :text ""))
       (button :class "mainwidg time shadow yellowbutton"
         :style "padding: 7 0;"
-        :onclick  `paplay ~/Downloads/buttonclick.wav`
-        (label :text ""));
+        :timeout "5000ms"
+        :onclick  `paplay ~/Downloads/buttonclick.wav && ${EWW_CMD} update rightmarks=false && hyprpicker | wl-copy && dunstify " System" "Color copied to clipboard!"`
+        (label :text ""));
       (button :class "mainwidg time shadow bluebutton"
-        :onclick  `${EWW_CMD} update rightmarks=false && hyprpicker | wl-copy && dunstify " System" "Color copied to clipboard!"`
+        :timeout "5000ms"
+        :onclick  `paplay ~/Downloads/buttonclick.wav && ${EWW_CMD} update rightmarks=false && eww open screenshot-closer && eww open screenshot`
         :style "padding: 7 0;"
         (label :text "󰄀")))
     (box :orientation "h"
       :spacing 12
       (button :class "mainwidg time shadow bluebutton"
-        :onclick  `paplay ~/Downloads/buttonclick.wav && hyprlock`
+        :timeout "5000ms"
+        :onclick "paplay ~/Downloads/buttonclick.wav && systemd-run --user hyprlock"
         :style "padding: 7 0;"
         (label :text ""))
       (button :class "mainwidg time shadow purplebutton"
-        :onclick  `paplay ~/Downloads/buttonclick.wav`
+        :timeout "5000ms"
+        :onclick  `paplay ~/Downloads/buttonclick.wav && ${EWW_CMD} update notiopen=true && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
         :style "padding: 7 0;"
         (label :text ""))
       (button :class "mainwidg time shadow redbutton"
-        :onclick  `paplay ~/Downloads/buttonclick.wav`
+        :timeout "5000ms"
+        :onclick  `paplay ~/Downloads/buttonclick.wav && notify-send " System" " focus mode upcomming"`
         :style "padding: 7 0;"
         (label :text "󰋱")))
     (box :orientation "h"
@@ -388,14 +394,38 @@
               :max 101
               :min 0
               :onchange `brightnessctl s {}%`)))
-        (box :orientation "v"
+        (button :style "margin: 0;"
           :class "mainwidg bar shadow"
-          :style "margin: 0;"
-          (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "OS: Fedora")
-          (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "Kernel: ${kernel}")
-          (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "Up: ${uptime}"))))
-    (box :orientation "h"
-      (label :text "graphs and graphs of memory"))))
+          (box :orientation "v"
+            (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "OS: Fedora")
+            (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "Kernel: ${kernel}")
+            (label :hexpand true :xalign 0.5 :style "font-weight: bold; color: rgba(#9ccfd8,1);" :text "Up: ${uptime}")))))
+    (button :class "mainwidg bar shadow"
+      :vexpand true 
+      (box :orientation "h"
+        :vexpand true
+        :style "margin:8;"
+        (overlay :orientation "h"
+          (circular-progress
+            :class "mainwidg shadow"
+            :value 60
+            :thickness 20
+            :start-at 75)
+          (label :style "font-size: 2.5em;":text "h"))
+        (overlay :orientation "h"
+          (circular-progress
+            :class "mainwidg shadow"
+            :value 60
+            :thickness 20
+            :start-at 75)
+          (label :style "font-size: 2.5em;":text ""))
+        (overlay :orientation "h"
+          (circular-progress
+            :class "mainwidg shadow"
+            :value `${EWW_TEMPS}`
+            :thickness 20
+            :start-at 75)
+          (label :style "font-size: 2.5em;":text ""))))))
 
 ; (defwidget bar1 []
 ;  (box :class "bar"

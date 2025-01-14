@@ -117,7 +117,14 @@
     "status-icons": {
       "paused": "▶"
     },
-    "dynamic-len": 30
+    "dynamic-len": 30,
+    "dynamic-importance-order": [
+      "title",
+      "album",
+      "position",
+      "length",
+      "artist"
+    ]
     // "ignored-players": ["firefox"]
   },
   "idle_inhibitor": {
@@ -152,7 +159,8 @@
       "󰪤",
       "󰪥"
     ],
-    "tooltip": true
+    "tooltip": true,
+    "on-click": "eww update rightmarks=true"
   },
   "memory": {
     "format": "{}% "
@@ -178,7 +186,8 @@
       "󰪣 ",
       "󰪤  ",
       "󰪥  "
-    ]
+    ],
+    "on-click": "eww update rightmarks=true"
   },
   "backlight": {
     // "device": "acpi_video1",
@@ -330,14 +339,19 @@
     "drawer": {
       "transition-duration": 500,
       "children-class": "not-power",
-      "transition-left-to-right": false,
+      "transition-left-to-right": false
     },
     "modules": [
-      "custom/power", // First element is the "group leader" and won't ever be hidden
-      "custom/quit",
-      "custom/lock",
+      "custom/power",
       "custom/reboot",
+      "custom/quit",
+      "custom/lock"
     ]
+  },
+  "custom/reboot": {
+    "format": " 󰜉",
+    "tooltip": false,
+    "on-click": "reboot"
   },
   "custom/quit": {
     "format": " 󰗼 ",
@@ -347,12 +361,7 @@
   "custom/lock": {
     "format": "󰍁 ",
     "tooltip": false,
-    "on-click": "swaylock"
-  },
-  "custom/reboot": {
-    "format": "󰜉 ",
-    "tooltip": false,
-    "on-click": "reboot"
+    "on-click": "hyprlock"
   },
   "custom/power": {
     "format": " ",
