@@ -5,7 +5,6 @@
     :space-evenly false
     :orientation "v"
     :class "bar"
-     
     (box :vexpand true
       :hexpand true
       :orientation "v"
@@ -14,8 +13,9 @@
       (scroll :vscroll true
         :hscroll false
         :space-evely false
-        :vexpand false
+        :vexpand true
         :orientation "v"
+        :height 650
         (box :orientation "v"
           :hexpand true
           :vexpand false
@@ -64,7 +64,5 @@
         :onclick `dunstctl history-clear && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
           (label :css "margin: 2px;":xalign 0 :text ""))
       (button :vexpand true :hexpand true :onclick `${EWW_CMD} update notiopen=false` " ")
-      (label :xalign 1
-        :text "Notifications"
-        :text "Notifications"))))
+      (label :xalign 1 :text "Notifications"))))
  
