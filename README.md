@@ -1,6 +1,6 @@
 # Dotfiles
 
-These are the dotfiles I have been using for the past few weeks as my daily driver, I must say it was fun
+These are the dotfiles I have been using for the past few months as my daily driver, I must say it was fun
 creating and using your on setup and dotfiles for the first time. It is fairly new and
 immature repo. Maintained with the help of chezmoi(great project btw), you can learn more about the amazing
 project [here](https://www.chezmoi.io) and can use my dotfiles from [these](https://www.chezmoi.io/user-guide/daily-operations/#install-chezmoi-and-your-dotfiles-on-a-new-machine-with-a-single-command) commands.
@@ -10,34 +10,28 @@ These dotfiles are not made to be worked for every system. It is just a showcase
 anyone finds something interesting, they can surely adopt it in their files. Still, any suggestions and
 improvements are welcomed. Feel free to open an issue.
 
-
-## Scripts InUse
-
-### Network management
-### Eww scripts
-### Hyprlock Scripts
-### Neomutt Scripts.
-
 ## Showcase
+
+The images of my workstation can be seen at SHOWCASE.md.
 
 ## Utilities
 
 | Description   | Tool          |
 | ------------- | ------------- |
-| Distro        | Fedora        |
-| Wayland compositor  |   Hyprland |
-| App Launcher | Fuzzel |
-| Notification Daemon| Dunst with powernotd for battery notifications|
-| Wallpaper Daemon | hyprpaper with paperizer |
-| Custom Widgets | Eww |
-| Video Player| VLC |
-| Image Viewer | Imv |
-| Screenshot and Sharing | Hyprshot and OBS Studio|
-| Logout menu | wlogout |
-| Topbar | waybar |
-|Browser | Zen with OneTab|
-|Terminal | Kitty|
-| Shell | zsh using oh-my-posh with Antigen plugins|
+| Distro        | [Fedora](https://fedoraproject.org/)       |
+| Wayland compositor  |   [Hyprland](https://hyprland.org/) |
+| App Launcher | [Fuzzel](https://codeberg.org/dnkl/fuzzel) |
+| Notification Daemon| [Dunst](https://dunst-project.org/) {[powernotd](https://lib.rs/crates/powernotd)}|
+| Wallpaper Daemon | [hyprpaper](https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/) with [paperizer](https://gitlab.com/imn1/paperizer) |
+| Custom Widgets | [Eww](https://github.com/elkowar/eww) |
+| Video Player| [VLC](https://www.videolan.org/) |
+| Image Viewer | [Imv](https://sr.ht/~exec64/imv/) |
+| Screenshot and Sharing | [Hyprshot](https://github.com/Gustash/Hyprshot) and [OBS Studio](https://obsproject.com/)|
+| Logout menu | [wlogout](https://github.com/ArtsyMacaw/wlogout) |
+| Topbar | [waybar](https://github.com/Alexays/Waybar/) |
+|Browser | [Zen](https://zen-browser.app/) with [nightTab](https://addons.mozilla.org/en-US/firefox/addon/nighttab/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=collection)|
+|Terminal | [Kitty](https://sw.kovidgoyal.net/kitty/)|
+| Shell | [zsh](https://zsh.sourceforge.io/) {[oh-my-posh](https://ohmyposh.dev/)/ [Antigen](https://github.com/zsh-users/antigen)}|
 | Resource Monitor| Btop|
 | Screen Locker | Hyprlock |
 |Text Editor | Vim |
