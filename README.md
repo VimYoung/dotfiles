@@ -93,9 +93,9 @@ I want to add in the workflow, it serves as a reference to what changes can come
 
 [^1]: Credit to [networkmanager_dmenu](https://github.com/firecat53/networkmanager-dmenu) for making network management
 easy and go to task with fuzzel.
-[^2]: Hyprdots helped me a lot before I made my own 3 layouts (The last three in layouts folder).
+[^2]: [Hyprlock dots](https://github.com/mahaveergurjar/Hyprlock-Dots) helped me a lot before I made my own 3 layouts (The last three in layouts folder).
 Hence, the scripts are still here even though I don't use it. Good For beginners.
-[^3]: Reference to neomutt setup.
+[^3]: These two articles ( [1](https://gideonwolfe.com/posts/workflow/neomutt/intro/), [2](https://www.jevy.org/articles/neomutt-lieer-notmuch/)) were a godsend for setting Neomutt and gmail in it.
 [^4]: Using thunderbird with external-editor plugin and html wrapping disables
 works best for mailing lists.
 [^5]: Rofi was very good for quick starting with hyprland, Rofi themes by [this](https://github.com/adi1090x/rofi) repo
