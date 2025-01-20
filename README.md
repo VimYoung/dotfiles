@@ -3,8 +3,7 @@
 These are the dotfiles I have been using for the past few months as my daily driver, I must say it was fun
 creating and using your on setup and dotfiles for the first time. It is fairly new and
 immature repo. Maintained with the help of chezmoi(great project btw), you can learn more about the amazing
-project [here](https://www.chezmoi.io) and can use my dotfiles from [these](https://www.chezmoi.io/user-guide/daily-operations/#install-chezmoi-and-your-dotfiles-on-a-new-machine-with-a-single-command) commands.
-
+project [here](https://www.chezmoi.io).
 > Disclaimer
 These dotfiles are not made to be worked for every system. It is just a showcase of my configs, in case
 anyone finds something interesting, they can surely adopt it in their files. Still, any suggestions and
@@ -19,6 +18,7 @@ improvements are welcomed. Feel free to open an issue.
 | App Launcher | [Fuzzel](https://codeberg.org/dnkl/fuzzel)[^1] |
 | Notification Daemon| [Dunst](https://dunst-project.org/) {[powernotd](https://lib.rs/crates/powernotd)}|
 | Wallpaper Daemon | [hyprpaper](https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/) with [paperizer](https://gitlab.com/imn1/paperizer) |
+| Lock Screen | [Hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/)[^2] |
 | Custom Widgets | [Eww](https://github.com/elkowar/eww) |
 | Video Player| [VLC](https://www.videolan.org/) |
 | Image Viewer | [Imv](https://sr.ht/~exec64/imv/) |
@@ -35,7 +35,7 @@ improvements are welcomed. Feel free to open an issue.
 |IDE| [Neovim](https://neovim.io/) |
 |MPD client| [rmpc](https://mierak.github.io/rmpc/) |
 | Filemanager | <ul><li><b>primary:</b> [ranger](https://github.com/ranger/ranger) </li><li><b>gui/secondary</b> [nautilus](https://apps.gnome.org/Nautilus/) </li></ul> |
-| Email Client | <ul><li><b>primary:</b> [Neomutt](https://neomutt.org/)([notmuch](https://notmuchmail.org/))[^2] </li><li><b>gui/secondary</b> [Thunderbird](https://www.thunderbird.net/en-US/)[^3]</li></ul> |
+| Email Client | <ul><li><b>primary:</b> [Neomutt](https://neomutt.org/)([notmuch](https://notmuchmail.org/))[^3] </li><li><b>gui/secondary</b> [Thunderbird](https://www.thunderbird.net/en-US/)[^4]</li></ul> |
 | Fonts | <ul><li>Isovka</li><li>CaskaydiaCove</li><li>Panchang</li></ul> |
 
 ## Utilities archive
@@ -49,7 +49,7 @@ utilities I like in General (marked with **G**).
 | Description | Tool |
 | ------------- | ------------- |
 | Distro (**P**)        | Arch / InstantOS |
-| App Launcher | Rofi[^4]|
+| App Launcher | Rofi[^5]|
 | Filemanager | <ul><li><b>Primary:</b> Superfile </li><li><b>GUI/Secondary</b> Thunar </li></ul>
 | Video Player| mpv player |
 |Terminal | Alacritty|
@@ -62,7 +62,15 @@ utilities I like in General (marked with **G**).
 | IRC client | Irssi |
 |PDF Viewer | Zathura |
 
+## Showcase
 
+The images of my workstation can be seen at SHOWCASE.md.
+
+## Use
+
+Though you can definitely use the configs from [chezmoi](https://www.chezmoi.io/user-guide/daily-operations/#install-chezmoi-and-your-dotfiles-on-a-new-machine-with-a-single-command) commands.
+
+## Important Points
 Few of "design decisions" which might seem different to others is due to following reasons.
 1. This config is used by me on my laptop, hence a concurrent absence of spacing and floating
 topbar is eminent for saving space.
@@ -72,11 +80,6 @@ are underutilised, as they will fit more in my muscle memory, I shall add more k
 4. The config doesn't try to rice apps, at least for now. I will eventually add them but after all the
 above checkboxes are met, I might add app rices too, and 2-3 more themes with wallust just so that my eyes
 don't get tired of seeing Rose Piné.
-
-## Showcase
-
-The images of my workstation can be seen at SHOWCASE.md.
-
 ## Future work
 
 Okay, so this section maintains as a todo list for the annoying things I want to stop and new tools/features
@@ -90,8 +93,10 @@ I want to add in the workflow, it serves as a reference to what changes can come
 
 [^1]: Credit to [networkmanager_dmenu](https://github.com/firecat53/networkmanager-dmenu) for making network management
 easy and go to task with fuzzel.
-[^2]: Reference to neomutt setup.
-[^3]: Using thunderbird with external-editor plugin and html wrapping disables
+[^2]: Hyprdots helped me a lot before I made my own 3 layouts (The last three in layouts folder).
+Hence, the scripts are still here even though I don't use it. Good For beginners.
+[^3]: Reference to neomutt setup.
+[^4]: Using thunderbird with external-editor plugin and html wrapping disables
 works best for mailing lists.
-[^4]: Rofi was very good for quick starting with hyprland, Rofi themes by [this](https://github.com/adi1090x/rofi) repo
+[^5]: Rofi was very good for quick starting with hyprland, Rofi themes by [this](https://github.com/adi1090x/rofi) repo
 is the best place I can recommend for new commers.
