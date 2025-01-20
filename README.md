@@ -64,7 +64,14 @@ utilities I like in General (marked with **G**).
 
 ## Showcase
 
-The images of my workstation can be seen at SHOWCASE.md.
+These are a few images and a video of my configs in action. OBS Studio started causing some weird
+behaviour, leading to high CPU hikes for the first time, hence the video became jerky. Will update that
+for a better one as soon as I get some time.
+
+![](./assets/screenshots/showcase.mp4)
+![utilities](./assets/screenshots/2025-01-20-160316_hyprshot.png)
+![widgets](./assets/screenshots/2025-01-20-160653_hyprshot.png)
+![](./assets/screenshots/wlogout.mp4)
 
 ## Use
 
@@ -80,13 +87,6 @@ are underutilised, as they will fit more in my muscle memory, I shall add more k
 4. The config doesn't try to rice apps, at least for now. I will eventually add them but after all the
 above checkboxes are met, I might add app rices too, and 2-3 more themes with wallust just so that my eyes
 don't get tired of seeing Rose Piné.
-## Future work
-
-Okay, so this section maintains as a todo list for the annoying things I want to stop and new tools/features
-I want to add in the workflow, it serves as a reference to what changes can come next.
-
-- [x] todo 1
-- [ ] todo 2
 
 ---
 ## Footnotes
