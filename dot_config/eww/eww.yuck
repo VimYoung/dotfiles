@@ -60,8 +60,7 @@
   :stacking "fg"
   :windowtype "normal"
   :wm-ignore true
-  :geometry (geometry :focusable false
-              :width "60%"
+  :geometry (geometry :width "60%"
               :height "25%"
               :anchor "center")
   (screenshotoptions))
@@ -122,8 +121,7 @@
   :stacking "fg"
   :windowtype "normal"
   :wm-ignore true 
-  :geometry (geometry :focusable false
-              :width "30%"
+  :geometry (geometry :width "30%"
               :height "5px"
               :anchor "left bottom")
   (notiopener))
@@ -148,8 +146,7 @@
   :stacking "fg"
   :windowtype "normal"
   :wm-ignore true 
-  :geometry (geometry :focusable false
-              :width "10%"
+  :geometry (geometry :width "10%"
               :height "5px"
               :anchor "top center")
   (calenders))
@@ -177,10 +174,10 @@
   :stacking "fg"
   :windowtype "normal"
   :wm-ignore true
-  :geometry (geometry :focusable false
-              :width "5px"
+  :geometry (geometry :width "5px"
               :height "95%"
               :anchor "right center")
+  :namespace "rightmarks"
   (eventbox
     :orientation "v"
     :onhover `${EWW_CMD} update rightmarks=true`
@@ -214,9 +211,9 @@
       :hexpand true
       :orientation "v"
       :spacing 5
-      (button :class "redbutton" :onclick `pkill fuzzel && ${EWW_CMD} update selectedleftwindow=0`
+      (button :class "redbutton" :onclick `${EWW_CMD} update selectedleftwindow=0`
         (label :text " " :gravity "east"))
-      (button :class "purplebutton" :onclick `${EWW_CMD} update selectedleftwindow=1 && systemd-run --user fuzzel -B 0 -a "right" --x-margin 9 -w 28 -l 18`
+      (button :class "purplebutton" :onclick `${EWW_CMD} update selectedleftwindow=1`
         (label :text " " :gravity "east"))
       (button :class "bluebutton" :onclick `${EWW_CMD} update selectedleftwindow=2`
         (label :text " " :gravity "east"))
@@ -233,7 +230,7 @@
     :class "mainlength"
     :spacing 5
     :geometry (geometry :width "30%")
-    (label :hexpand true :class "test headingname":text "window 2")))
+    (label :hexpand true :style "padding: 4 0;":class "headingname":text "Clipboard Enteries")))
 
 (defwidget mainwidget []
   (box :height 80

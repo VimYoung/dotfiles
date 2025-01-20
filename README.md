@@ -10,36 +10,33 @@ These dotfiles are not made to be worked for every system. It is just a showcase
 anyone finds something interesting, they can surely adopt it in their files. Still, any suggestions and
 improvements are welcomed. Feel free to open an issue.
 
-## Showcase
-
-The images of my workstation can be seen at SHOWCASE.md.
-
 ## Utilities
 
 | Description   | Tool          |
 | ------------- | ------------- |
 | Distro        | [Fedora](https://fedoraproject.org/)       |
 | Wayland compositor  |   [Hyprland](https://hyprland.org/) |
-| App Launcher | [Fuzzel](https://codeberg.org/dnkl/fuzzel) |
+| App Launcher | [Fuzzel](https://codeberg.org/dnkl/fuzzel)[^1] |
 | Notification Daemon| [Dunst](https://dunst-project.org/) {[powernotd](https://lib.rs/crates/powernotd)}|
 | Wallpaper Daemon | [hyprpaper](https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/) with [paperizer](https://gitlab.com/imn1/paperizer) |
 | Custom Widgets | [Eww](https://github.com/elkowar/eww) |
 | Video Player| [VLC](https://www.videolan.org/) |
 | Image Viewer | [Imv](https://sr.ht/~exec64/imv/) |
-| Screenshot and Sharing | [Hyprshot](https://github.com/Gustash/Hyprshot) and [OBS Studio](https://obsproject.com/)|
+| Screenshot| [Hyprshot](https://github.com/Gustash/Hyprshot) |
+| Shreen Recording | [OBS Studio](https://obsproject.com/) |
 | Logout menu | [wlogout](https://github.com/ArtsyMacaw/wlogout) |
 | Topbar | [waybar](https://github.com/Alexays/Waybar/) |
 |Browser | [Zen](https://zen-browser.app/) with [nightTab](https://addons.mozilla.org/en-US/firefox/addon/nighttab/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=collection)|
 |Terminal | [Kitty](https://sw.kovidgoyal.net/kitty/)|
 | Shell | [zsh](https://zsh.sourceforge.io/) {[oh-my-posh](https://ohmyposh.dev/)/ [Antigen](https://github.com/zsh-users/antigen)}|
-| Resource Monitor| Btop|
-| Screen Locker | Hyprlock |
-|Text Editor | Vim |
-|IDE| Neovim |
-|MPD client| rmpc |
-| Filemanager | <ul><li><b>primary:</b> ranger </li><li><b>gui/secondary</b> nautilus </li></ul> |
-|Email Client | <ul><li><b>primary:</b> Neomutt with notmuch and leer </li><li><b>gui/secondary</b> Thunderbird with html wraping disabled </li></ul> |
-| Fonts | todo list of all fonts |
+| Resource Monitor| [Btop](https://github.com/aristocratos/btop)|
+| Screen Locker | [Hyprlock](https://github.com/hyprwm/hyprlock) |
+|Text Editor | [Vim](https://www.vim.org/) |
+|IDE| [Neovim](https://neovim.io/) |
+|MPD client| [rmpc](https://mierak.github.io/rmpc/) |
+| Filemanager | <ul><li><b>primary:</b> [ranger](https://github.com/ranger/ranger) </li><li><b>gui/secondary</b> [nautilus](https://apps.gnome.org/Nautilus/) </li></ul> |
+| Email Client | <ul><li><b>primary:</b> [Neomutt](https://neomutt.org/)([notmuch](https://notmuchmail.org/))[^2] </li><li><b>gui/secondary</b> [Thunderbird](https://www.thunderbird.net/en-US/)[^3]</li></ul> |
+| Fonts | <ul><li>Isovka</li><li>CaskaydiaCove</li><li>Panchang</li></ul> |
 
 ## Utilities archive
 
@@ -51,8 +48,8 @@ utilities I like in General (marked with **G**).
 
 | Description | Tool |
 | ------------- | ------------- |
-| Distro        | Arch |
-| App Launcher | Rofi[^1]|
+| Distro (**P**)        | Arch / InstantOS |
+| App Launcher | Rofi[^4]|
 | Filemanager | <ul><li><b>Primary:</b> Superfile </li><li><b>GUI/Secondary</b> Thunar </li></ul>
 | Video Player| mpv player |
 |Terminal | Alacritty|
@@ -61,7 +58,7 @@ utilities I like in General (marked with **G**).
 | Video Player| MPV |
 | Image Viewer | Feh |
 |MPD client| kew |
-|Email Client | <ul><li><b>primary:</b> Aerc</li><li><b>gui/secondary</b> ProtonMail with html wraping disabled </li></ul> |
+|Email Client | Aerc |
 | IRC client | Irssi |
 |PDF Viewer | Zathura |
 
@@ -73,8 +70,12 @@ topbar is eminent for saving space.
 3. I still don't use half of the utilities I will mention at their full keyboard configs, hence these
 are underutilised, as they will fit more in my muscle memory, I shall add more keybinds for them.
 4. The config doesn't try to rice apps, at least for now. I will eventually add them but after all the
-above checkboxes are met, I might add app rices too, and 2-3 more themes with pywal just so that my eyes
+above checkboxes are met, I might add app rices too, and 2-3 more themes with wallust just so that my eyes
 don't get tired of seeing Rose Piné.
+
+## Showcase
+
+The images of my workstation can be seen at SHOWCASE.md.
 
 ## Future work
 
@@ -85,6 +86,12 @@ I want to add in the workflow, it serves as a reference to what changes can come
 - [ ] todo 2
 
 ---
-## References
+## Footnotes
 
-[^1]: Reference to rofi.
+[^1]: Credit to [networkmanager_dmenu](https://github.com/firecat53/networkmanager-dmenu) for making network management
+easy and go to task with fuzzel.
+[^2]: Reference to neomutt setup.
+[^3]: Using thunderbird with external-editor plugin and html wrapping disables
+works best for mailing lists.
+[^4]: Rofi was very good for quick starting with hyprland, Rofi themes by [this](https://github.com/adi1090x/rofi) repo
+is the best place I can recommend for new commers.
