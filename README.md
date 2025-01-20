@@ -30,7 +30,7 @@ improvements are welcomed. Feel free to open an issue.
 |Terminal | [Kitty](https://sw.kovidgoyal.net/kitty/)|
 | Shell | [zsh](https://zsh.sourceforge.io/) {[oh-my-posh](https://ohmyposh.dev/)/ [Antigen](https://github.com/zsh-users/antigen)}|
 | Resource Monitor| [Btop](https://github.com/aristocratos/btop)|
-| Screen Locker | [Hyprlock](https://github.com/hyprwm/hyprlock) |
+|PDF Viewer | [Zathura](https://pwmt.org/projects/zathura/) |
 |Text Editor | [Vim](https://www.vim.org/) |
 |IDE| [Neovim](https://neovim.io/) |
 |MPD client| [rmpc](https://mierak.github.io/rmpc/) |
@@ -48,19 +48,18 @@ utilities I like in General (marked with **G**).
 
 | Description | Tool |
 | ------------- | ------------- |
-| Distro (**P**)        | Arch / InstantOS |
-| App Launcher | Rofi[^5]|
-| Filemanager | <ul><li><b>Primary:</b> Superfile </li><li><b>GUI/Secondary</b> Thunar </li></ul>
-| Video Player| mpv player |
-|Terminal | Alacritty|
-| Custom Widgets | Chunks-rs |
-|Browser | qutebrowser|
-| Video Player| MPV |
-| Image Viewer | Feh |
-|MPD client| kew |
-|Email Client | Aerc |
-| IRC client | Irssi |
-|PDF Viewer | Zathura |
+| Distro (**W**)        | Arch / InstantOS |
+| App Launcher (**P**)| Rofi[^5]|
+| Filemanager  (**G**)| <ul><li><b>Primary:</b> Superfile </li><li><b>GUI/Secondary</b> Thunar </li></ul>
+| Video Player (**W**)| mpv player |
+|Terminal (**P**)| Alacritty|
+| Custom Widgets (**G**)| Chunks-rs |
+|Browser (**W**)| qutebrowser|
+| Video Player (**W**)| MPV |
+| Image Viewer (**P**)| Feh |
+|MPD client (**W**)| kew |
+|Email Client  (**G**)| Aerc |
+| IRC client (**W**)| Irssi |
 
 ## Showcase
 
@@ -68,14 +67,21 @@ These are a few images and a video of my configs in action. OBS Studio started c
 behaviour, leading to high CPU hikes for the first time, hence the video became jerky. Will update that
 for a better one as soon as I get some time.
 
-![](./assets/screenshots/showcase.mp4)
+![showcase](./assets/screenshots/showcase.mp4)
+
 ![utilities](./assets/screenshots/2025-01-20-160316_hyprshot.png)
+
 ![widgets](./assets/screenshots/2025-01-20-160653_hyprshot.png)
-![](./assets/screenshots/wlogout.mp4)
+
+![wlogout](./assets/screenshots/wlogout.mp4)
+
 
 ## Use
 
-Though you can definitely use the configs from [chezmoi](https://www.chezmoi.io/user-guide/daily-operations/#install-chezmoi-and-your-dotfiles-on-a-new-machine-with-a-single-command) commands.
+Though you can definitely use the configs from [chezmoi](https://www.chezmoi.io/user-guide/daily-operations/#install-chezmoi-and-your-dotfiles-on-a-new-machine-with-a-single-command) commands. I highly recommend against it.
+These configs are bound to work with my laptop screen size, hence various values and paths are
+hard coded in the files. Also, I havn't created any installation scripts. So, breaking is bound to happen. Alternatively, you can copy
+files of specific utilities you want to use.
 
 ## Important Points
 Few of "design decisions" which might seem different to others is due to following reasons.
