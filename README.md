@@ -5,9 +5,8 @@ creating and using your on setup and dotfiles for the first time. It is fairly n
 immature repo. Maintained with the help of chezmoi(great project btw), you can learn more about the amazing
 project [here](https://www.chezmoi.io).
 > Disclaimer
-These dotfiles are not made to be worked for every system. It is just a showcase of my configs, in case
-anyone finds something interesting, they can surely adopt it in their files. Still, any suggestions and
-improvements are welcomed. Feel free to open an issue.
+These dotfiles are not made to work with every system. It is just a showcase of my configs, in case you find
+something interesting, it can surely be adopted. Still, any suggestions are welcome. Feel free to open an issue.
 
 ## Utilities
 
