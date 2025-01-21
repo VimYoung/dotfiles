@@ -1,7 +1,7 @@
 # Dotfiles
 
 These are the dotfiles I have been using for the past few months as my daily driver, I must say it was fun
-creating and using your on setup and dotfiles for the first time. It is fairly new and
+creating and using your own setup and dotfiles for the first time. It is fairly new and
 immature repo. Maintained with the help of chezmoi(great project btw), you can learn more about the amazing
 project [here](https://www.chezmoi.io).
 > Disclaimer
@@ -63,8 +63,7 @@ utilities I like in General (marked with **G**).
 ## Showcase
 
 These are a few images and a video of my configs in action. OBS Studio started causing some weird
-behaviour, leading to high CPU hikes for the first time, hence the video became jerky. Will update that
-for a better one as soon as I get some time.
+behaviour, leading to high CPU hikes for the first time, hence the video became jerky. Will update that with a better one as soon as I get some time.
 
 ![showcase](./assets/screenshots/showcase.mp4)
 
@@ -83,15 +82,14 @@ hard coded in the files. Also, I havn't created any installation scripts. So, br
 files of specific utilities you want to use.
 
 ## Important Points
-Few of "design decisions" which might seem different to others is due to following reasons.
+
 1. This config is used by me on my laptop, hence a concurrent absence of spacing and floating
 topbar is eminent for saving space.
 2. The config doesn't do anything more than making hyprland look descent and workable.
-3. I still don't use half of the utilities I will mention at their full keyboard configs, hence these
-are underutilised, as they will fit more in my muscle memory, I shall add more keybinds for them.
-4. The config doesn't try to rice apps, at least for now. I will eventually add them but after all the
-above checkboxes are met, I might add app rices too, and 2-3 more themes with wallust just so that my eyes
+3. I still don't use few of the utilities I mentioned regularly , hence various apps just have their default configs. As they will fit more in my muscle memory, I shall add more keybinds for them.
+4. The config doesn't try to rice all the apps, at least for now. I will add them and 2-3 more themes with wallust just so that my eyes
 don't get tired of seeing Rose Piné.
+5. I would love to thank hyprland for making me use my system in a more productive way. It pulled me out of Gnome for good, introducing various independent apps for necessary actions like image viewing, file managing etc. I hardly use touchpad now for navigation and other trivial stuff. I also became a vim fan and power user, seeking to enable its keybinding in any app possible.
 
 ---
 ## Footnotes
