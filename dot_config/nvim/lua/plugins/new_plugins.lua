@@ -316,7 +316,7 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     config = true,
     keys = { -- load the plugin only when using it's keybinding:
-      { "<leader><F5>", "<cmd>lua require('undotree').toggle()<cr>" },
+      { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
     },
   },
   {
@@ -342,7 +342,7 @@ return {
     "kelly-lin/ranger.nvim",
     config = function()
       require("ranger-nvim").setup({ replace_netrw = true })
-      vim.api.nvim_set_keymap("n", "<leader>ef", "", {
+      vim.api.nvim_set_keymap("n", "<leader>p", "", {
         noremap = true,
         callback = function()
           require("ranger-nvim").open(true)
@@ -373,4 +373,8 @@ return {
     "elkowar/yuck.vim",
   },
   { "Kolkhis/streamer-mode.nvim" },
+  {
+    "willothy/leptos.nvim",
+    event = "VeryLazy",
+  },
 }

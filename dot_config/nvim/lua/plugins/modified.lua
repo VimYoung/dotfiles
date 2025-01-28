@@ -132,9 +132,9 @@ return {
     "folke/noice.nvim",
     opts = {
       lsp = {
-        progress = {
-          enabled = false,
-        },
+        -- progress = {
+        --   enabled = false,
+        -- },
         hover = {
           enabled = true,
           silent = true, -- set to true to not show a message if hover is not available
@@ -244,6 +244,30 @@ return {
     opts = {
       ui = {
         border = "rounded",
+      },
+    },
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    opts = {
+      default_settings = {
+        ["rust-analyser"] = {
+          rustfmt = {
+            overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
+          },
+          procMacro = {
+            ignored = {
+              ["async-trait"] = { "async_trait" },
+              ["napi-derive"] = { "napi" },
+              ["async-recursion"] = { "async_recursion" },
+              leptos_macro = {
+                -- optional: --
+                "component",
+                "server",
+              },
+            },
+          },
+        },
       },
     },
   },

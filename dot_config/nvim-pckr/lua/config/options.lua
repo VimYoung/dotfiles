@@ -78,3 +78,50 @@ vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.o.foldcolumn = "0" -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
+
+--disable kitty padding when nvim open
+-- vim.cmd([[autocmd VimEnter * !kitty @ set-spacing padding-left=0 padding-top=0]])
+-- vim.cmd([[autocmd VimLeave * !kitty @ set-spacing padding-left=default padding-top=default]])
+-- vim.api.nvim_create_autocmd("VimEnter", {
+-- 	callback = function()
+-- 		os.execute("kitty @ set-spacing padding-left=0 padding-top=0")
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("VimLeave", {
+-- 	callback = function()
+-- 		os.execute("kitty @ set-spacing padding-left=default padding-top=default")
+-- 	end,
+-- })
+-- vim.api.nvim_create_autocmd("VimEnter", {
+-- 	callback = function()
+-- 		vim.fn.system("kitty @ set-spacing padding-left=0 padding-top=0")
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("VimLeave", {
+-- 	callback = function()
+-- 		vim.fn.system("kitty @ set-spacing padding-left=default padding-top=default")
+-- 	end,
+-- })
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		local kitty_socket = os.getenv("KITTY_LISTEN_ON") -- Get the environment variable
+		if kitty_socket then
+			vim.fn.system("kitty @ --to " .. kitty_socket .. " set-spacing padding-left=0 padding-top=0")
+		else
+			print("Error: KITTY_LISTEN_ON is not set. Cannot adjust padding.")
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimLeave", {
+	callback = function()
+		local kitty_socket = os.getenv("KITTY_LISTEN_ON")
+		if kitty_socket then
+			vim.fn.system("kitty @ --to " .. kitty_socket .. " set-spacing padding-left=default padding-top=default")
+		else
+			print("Error: KITTY_LISTEN_ON is not set. Cannot adjust padding.")
+		end
+	end,
+})
