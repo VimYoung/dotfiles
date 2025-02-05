@@ -18,8 +18,11 @@ bootstrap_pckr()
 -- Important setup imports
 require("config.options")
 require("config.keymaps")
+-- require("config.lsp.config")
+-- require("config.lsp.cmp")
 
-require("pckr").add({
+local colorscheme_list = require("plugins.colorschemes.list")
+local plugins = {
 	{ "marko-cerovac/material.nvim", config = "plugins.colorschemes.material" },
 	{
 		"nvim-lualine/lualine.nvim",
@@ -78,7 +81,7 @@ require("pckr").add({
 		"kelly-lin/ranger.nvim",
 		config = function()
 			require("ranger-nvim").setup({ replace_netrw = true })
-			vim.api.nvim_set_keymap("n", "<C-p>", "", {
+			vim.api.nvim_set_keymap("n", "<leader>p", "", {
 				noremap = true,
 				callback = function()
 					require("ranger-nvim").open(true)
@@ -92,8 +95,71 @@ require("pckr").add({
 			require("colorful-winsep").setup()
 		end,
 	},
+	{ "zaldih/themery.nvim", config = "plugins.themery" },
+	"nyoom-engineering/oxocarbon.nvim",
 	{
-		"zaldih/themery.nvim",
-		config = "plugins.themery",
+		"nvim-neo-tree/neo-tree.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+		},
+		config = "plugins.neotree",
 	},
-})
+	-- Have to set it up.
+	{
+		"startup-nvim/startup.nvim",
+		requires = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-file-browser.nvim",
+		},
+		config = "plugins.startup",
+	},
+	-- Have to set it up.
+	{
+		"nmac427/guess-indent.nvim",
+		config = function()
+			require("guess-indent").setup({})
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		requires = {
+			"hrsh7th/cmp-nvim-lsp",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
+		config = "config",
+	},
+	{
+		"hrsh7th/cmp-nvim-lsp",
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		requires = {
+			"hrsh7th/cmp-nvim-lsp",
+		},
+		config = function()
+			local cmp = require("cmp")
+
+			cmp.setup({
+				sources = {
+					{ name = "nvim_lsp" },
+				},
+				snippet = {
+					expand = function(args)
+						-- You need Neovim v0.10 to use vim.snippet
+						vim.snippet.expand(args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({}),
+			})
+		end,
+	},
+}
+
+
+require("pckr").add(table.move(colorscheme_list, 1, #colorscheme_list, #plugins + 1, plugins))
+vim.cmd("colorscheme material") --enabling the theme.

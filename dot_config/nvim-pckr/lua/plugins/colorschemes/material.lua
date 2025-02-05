@@ -24,10 +24,3 @@ require("material").setup({
 	},
 	lualine_style = "stealth",
 })
-
---Initialising plugins
--- vim.g.material_style = "deep ocean" --Setting desired style
-vim.cmd("colorscheme material") --enabling the theme.
-
---I do not know that wheather the above setup is working or not, will have to change few values from default and
---see If that takes effect.

@@ -44,6 +44,7 @@ vim.keymap.set("t", "<S-Tab>", [[<C-\><C-n>:tabprevious<CR>]], { noremap = true,
 
 -- Map <leader>r to reload init.lua
 vim.keymap.set("n", "<leader>r", ":luafile ~/.config/nvim-pckr/init.lua<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>b", ":Neotree<CR>", { noremap = true, silent = true })
 
 ----
 -- Keymaps by plugins

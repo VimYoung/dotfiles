@@ -1,11 +1,11 @@
-vim.opt.clipboard = "unnamedplus" -- use system clipboard
+vim.opt.clipboard = "unnamedplus" -- use system clipboardo
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 --vim.opt.mouse = 'a' 		    --allow the mouse to be used in Neovim
 
 -- Tab
-vim.opt.tabstop = 4 -- number of visual spaces per TAB
-vim.opt.softtabstop = 4 -- number of spacesin tab when editing
-vim.opt.shiftwidth = 4 -- insert 4 spaces on a tab
+vim.opt.tabstop = 2 -- number of visual spaces per TAB
+vim.opt.softtabstop = 2 -- number of spacesin tab when editing
+vim.opt.shiftwidth = 2 -- insert 4 spaces on a tab
 vim.opt.expandtab = true -- tabs are spaces, mainly because of python
 
 -- UI config
@@ -27,7 +27,8 @@ vim.opt.ignorecase = true -- ignore case in searches by default
 vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entered
 
 --General Settings.
-vim.o.swapfile = false --Inhibit the use of swapfile.
+vim.opt.swapfile = false --Inhibit the use of swapfile.
+vim.opt.laststatus = 3 -- Global statusline
 -- --vim.opt.nocompatible = true         --disable compatibility to old-time.
 -- vim.rocks.hererocks = false
 -- vim.rocks.enabled = true
@@ -93,35 +94,35 @@ vim.o.foldlevelstart = 99
 -- 		os.execute("kitty @ set-spacing padding-left=default padding-top=default")
 -- 	end,
 -- })
--- vim.api.nvim_create_autocmd("VimEnter", {
--- 	callback = function()
--- 		vim.fn.system("kitty @ set-spacing padding-left=0 padding-top=0")
--- 	end,
--- })
---
--- vim.api.nvim_create_autocmd("VimLeave", {
--- 	callback = function()
--- 		vim.fn.system("kitty @ set-spacing padding-left=default padding-top=default")
--- 	end,
--- })
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
-		local kitty_socket = os.getenv("KITTY_LISTEN_ON") -- Get the environment variable
-		if kitty_socket then
-			vim.fn.system("kitty @ --to " .. kitty_socket .. " set-spacing padding-left=0 padding-top=0")
-		else
-			print("Error: KITTY_LISTEN_ON is not set. Cannot adjust padding.")
-		end
+		vim.fn.system("kitty @ set-spacing padding-left=0 padding-top=0")
 	end,
 })
 
 vim.api.nvim_create_autocmd("VimLeave", {
 	callback = function()
-		local kitty_socket = os.getenv("KITTY_LISTEN_ON")
-		if kitty_socket then
-			vim.fn.system("kitty @ --to " .. kitty_socket .. " set-spacing padding-left=default padding-top=default")
-		else
-			print("Error: KITTY_LISTEN_ON is not set. Cannot adjust padding.")
-		end
+		vim.fn.system("kitty @ set-spacing padding-left=default padding-top=default")
 	end,
 })
+-- vim.api.nvim_create_autocmd("VimEnter", {
+-- 	callback = function()
+-- 		local kitty_socket = os.getenv("KITTY_LISTEN_ON") -- Get the environment variable
+-- 		if kitty_socket then
+-- 			vim.fn.system("kitty @ --to " .. kitty_socket .. " set-spacing padding-left=0 padding-top=0")
+-- 		else
+-- 			print("Error: KITTY_LISTEN_ON is not set. Cannot adjust padding.")
+-- 		end
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("VimLeave", {
+-- 	callback = function()
+-- 		local kitty_socket = os.getenv("KITTY_LISTEN_ON")
+-- 		if kitty_socket then
+-- 			vim.fn.system("kitty @ --to " .. kitty_socket .. " set-spacing padding-left=default padding-top=default")
+-- 		else
+-- 			print("Error: KITTY_LISTEN_ON is not set. Cannot adjust padding.")
+-- 		end
+-- 	end,
+-- })
