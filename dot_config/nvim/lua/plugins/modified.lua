@@ -110,6 +110,9 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    keys = {
+      { "<leader>b", "<cmd>Neotree<cr>", desc = "Find Files" },
+    },
     opts = {
       window = {
         width = 20,
