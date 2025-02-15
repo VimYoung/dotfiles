@@ -8,6 +8,7 @@ vim.opt.scrolloff = 5
 vim.opt.whichwrap = "b,s,<,>,h,l"
 vim.opt.swapfile = false --Inhibit the use of swapfile.
 vim.opt.list = true
+vim.opt.colorcolumn = "79"
 vim.opt.listchars = {
   tab = "▷ ",
   trail = "·",
