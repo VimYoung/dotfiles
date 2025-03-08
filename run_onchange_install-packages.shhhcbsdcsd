@@ -1,0 +1,76 @@
+#!/bin/sh
+sudo dnf upgrade
+
+# Installing Essential programs
+sudo dnf install git
+
+# Enabling RPM packages.
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf4 update @core
+
+# Enabling necessary copr files
+sudo dnf copr enable solopasha/hyprland
+sudo dnf copr enable atim/lazygit -y
+sudo dnf copr enable erikreider/SwayNotificationCenter
+
+# necessary Directory creations.
+# make screenshots and screencasts dirs for hyprshot and obs Studio.
+
+# Setup from command line, change following settings of obs studio.
+# 1. Change default video typ to mp4
+# 2. Change default saving location.
+
+# Installing and setting up fonts
+
+# Install papirus icon theme for fuzzel and gtk4 theme.
+# Cloning necessary obsidian files and  moving the scripts into them.
+# Setting zsh, antigen and setting zsh as default.
+# Installing necessary build tools
+# Installing necessary software
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin # kitty
+# fuzzel
+# IMV
+# zathura and its pdf plugin.
+# powernotd
+# wlogout
+# pavucontrol
+
+# Installing necessary command line utilities.
+# peaclock
+# tealdeer
+# hyprshot
+# cava
+# fastfetch
+# btop
+# brightnessctl
+# nvim and vim
+# playerctl
+# zoxide, bat.
+# Compile hyprpaper with papermerise and hyprlock natively.
+# neomutt notmuch and lieer config and setup
+# lazygit
+# ranger
+# gssettings
+# harlequin
+# Installing and setting up eww.
+# nmcli and networkmanager-dmenu
+# chezmoi installation itself.
+# optionally install exercism
+
+# Installing necessary languages
+## Installing Rust
+## Installing Lua 5.3.6 with luarocks of the same
+## Installing Go
+
+## FInd a method to somehow automaticcaly install all the firefox and thinderbird and
+## zen extensions.
+
+# Installing flatpak applications.
+sudo flatpak update
+sudo flatpak install flathub md.obsidian.Obsidian
+sudo flatpak install flathub com.discordapp.Discord
+sudo flatpak install flathub com.tominlab.wonderpen
+sudo flatpak install flathub com.obsproject.Studio
+
+# Echoing necessary steps.
+echo ""

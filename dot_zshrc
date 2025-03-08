@@ -23,6 +23,7 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 . "$HOME/.cargo/env"
 export PATH=$PATH:/home/bhaumik/bin
 export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
 export GTK_THEME=Catppuccin-Dark
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib64/
 export PKG_CONFIG_PATH=/usr/bin/astal

@@ -7,4 +7,5 @@ return {
   { "folke/which-key.nvim", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
   { "ibhagwan/fzf-lua.nvim", enabled = false },
+  { "ray-x/lsp_signature.nvim", enabled = false },
 }

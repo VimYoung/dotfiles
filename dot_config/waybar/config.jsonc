@@ -17,7 +17,7 @@
     //"custom/media"
   ],
   "modules-center": [
-    "mpris",
+    // "mpris",
     "clock",
     "hyprland/submap",
     "mpd"

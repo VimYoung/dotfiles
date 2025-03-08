@@ -300,7 +300,7 @@
         (label :text ""))
       (button :class "mainwidg time shadow purplebutton"
         :timeout "5000ms"
-        :onclick  `paplay ~/Downloads/buttonclick.wav && ${EWW_CMD} update notiopen=true && ${EWW_CMD} update notijson="$(dunstctl history| jq '."data" | .[]')"`
+        :onclick  `paplay ~/Downloads/buttonclick.wav && swaync-client -op`
         :style "padding: 7 0;"
         (label :text ""))
       (button :class "mainwidg time shadow redbutton"
