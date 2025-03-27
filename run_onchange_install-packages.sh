@@ -8,6 +8,10 @@ sudo dnf install git curl wget #Mostly already installed.
 # Enabling RPM packages.
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf4 update @core
+# Above didn't work and required interuption
+# eww copy paste and build probably f'ed up, it didn't build up.
+# oh-my-posh installation didn't work on re=opening kitty, it needs to be installed on zsh.
+# Also make a way to install and setup rose pine normal and hyprcursor.
 
 # Enabling necessary copr files
 sudo dnf copr enable solopasha/hyprland
@@ -32,6 +36,8 @@ sudo mkdir -p /usr/local/share/fonts/CascadiaCode
 
 # Installing and setting up fonts
 ## Iosevka
+# Permission is denied some where, some of these commands need to be run as sudo.
+# zen browser not installed.
 wget https://github.com/be5invis/Iosevka/releases/download/v33.0.1/PkgTTC-Iosevka-33.0.1.zip
 unzip ~/PkgTTC-Iosevka-33.0.1.zip -d /usr/local/share/fonts/iosevka/
 sudo chown -R root: /usr/local/share/fonts/iosevka
@@ -168,6 +174,7 @@ curl -L -o ~/.local/bin/networkmanager_dmenu https://raw.githubusercontent.com/f
 chmod +x ~/.local/bin/networkmanager_dmenu
 ## chezmoi installation itself.
 ## optionally install exercism
+## Instructions for installing and setting up ly display manager.
 
 # Installing necessary languages
 ### Installing Python command line tools.
