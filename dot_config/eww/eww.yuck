@@ -16,7 +16,7 @@
   :initial "error"
   `uname -r | sed -u 's/-.*//'`)
 
-(deflisten imgmpris :initial "/home/bhaumik/assets/nomusic.png"
+(deflisten imgmpris :initial "/home/ramayen/assets/nomusic.png"
   `playerctl --follow metadata mpris:artUrl | sed -u 's|^file://||'`)
 (deflisten titlempris :initial "No music playing"
   `playerctl --follow metadata --format {{title}}`)

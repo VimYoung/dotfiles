@@ -7,21 +7,21 @@ unsetopt beep notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/bhaumik/.zshrc'
+zstyle :compinstall filename '/home/ramayen/.zshrc'
 
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-export LUA_PATH="/home/bhaumik/.luarocks/share/lua/5.3/?.lua;/home/bhaumik/.luarocks/share/lua/5.3/?/init.lua;;"
-export LUA_CPATH="/home/bhaumik/.luarocks/lib/lua/5.3/?.so;;"
+# export LUA_PATH="/home/bhaumik/.luarocks/share/lua/5.3/?.lua;/home/bhaumik/.luarocks/share/lua/5.3/?/init.lua;;"
+# export LUA_CPATH="/home/bhaumik/.luarocks/lib/lua/5.3/?.so;;"
 export EDITOR=nvim
 export VISUAL=nvim
 export TERMINAL=kitty
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 . "$HOME/.cargo/env"
-export PATH=$PATH:/home/bhaumik/bin
+export PATH=$PATH:/home/ramayen/bin
 export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export GTK_THEME=Catppuccin-Dark

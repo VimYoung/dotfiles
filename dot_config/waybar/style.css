@@ -21,7 +21,8 @@
 * {
 	font-size: 16px;
 	/* font-family: "Iosevka Extended", "Iosevka Extralight"; */
-	font-family: "CaskaydiaCove NF", "CaskaydiaCove";
+	/* font-family: "CaskaydiaCove NF", "CaskaydiaCove"; */
+  font-family: "CaskaydiaCove NF", "CaskaydiaCove", FontAwesome6Free, SymbolsNerdFont;
 	/* font-family: "Panchang Variable", "Panchang"; */
   /* margin: 0px 0px 1px 0px; */
   /* padding: 1px 4px 0px 4px; */
@@ -39,7 +40,7 @@ window#waybar {
 #clock {
   background-color: rgba(64, 61, 82, 0.5);
   margin: 3px 0px 3px 0px;
-  padding: 1px 4px 0px 4px;
+  padding: 0px 4px 0px 4px;
   border-radius: 8px 8px 8px 8px;
 }
 

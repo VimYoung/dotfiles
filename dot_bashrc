@@ -27,7 +27,6 @@ unset rc
 # Defining of prompt starts from here
 
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-. "$HOME/.cargo/env"
 
 # eval "$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/takuya.omp.json)"
 # eval "$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/stelbent-compact.minimal.omp.json)"
@@ -56,3 +55,4 @@ eval "$(zoxide init bash)"
 export LUA_PATH="/home/bhaumik/.luarocks/share/lua/5.3/?.lua;/home/bhaumik/.luarocks/share/lua/5.3/?/init.lua;;"
 export LUA_CPATH="/home/bhaumik/.luarocks/lib/lua/5.3/?.so;;"
 export GTK_THEME=Catppuccin-Dark
+. "$HOME/.cargo/env"

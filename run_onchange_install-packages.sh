@@ -17,6 +17,7 @@ sudo dnf4 update @core
 sudo dnf copr enable solopasha/hyprland
 sudo dnf copr enable atim/lazygit -y
 sudo dnf copr enable erikreider/SwayNotificationCenter
+sudo dnf copr enable sneexy/zen-browser
 
 # necessary Directory creations.
 mkdir -p ~/Pictures/Screenshots
@@ -73,12 +74,12 @@ sudo fc-cache -v
 
 ## Installing Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-. "$HOME/.cargo/env" 
+. "$HOME/.cargo/env"
 rustc --version
 echo "\n\n RUST INSTALLED \n\n"
 
 # Installing Necessary build tools
-sudo dnf install cmake ninja-build g++
+sudo dnf install cmake ninja-build g++ socat fontawesome-fonts-all
 
 # Install papirus icon theme for fuzzel and gtk4 theme.
 sudo dnf install papirus-icon-theme
@@ -88,16 +89,17 @@ sudo dnf install papirus-icon-theme
 # Installing necessary software
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin # kitty
 ## Hyprland and other related utils.
-sudo dnf install hyprland hyprland-devel hyprpicker hypridle hyprsunset hyprpolkitagent hyprshot cliphist hyprsysteminfo hypridle hyprlock
+sudo dnf install hyprland hyprland-devel hyprpicker hypridle hyprsunset hyprpolkitagent hyprshot cliphist hyprsysteminfo hypridle hyprlock waybar
 ## fuzzel IMV zathura and its pdf plugin wlogout pavucontrol zen
-sudo dnf install fuzzel imv zathura zathura-pdf-poppler wlogout pavucontrol zen-broswer
+sudo dnf install fuzzel imv zathura zathura-pdf-poppler wlogout pavucontrol
+sudo dnf install zen-browser
 ## powernotd
 cargo install powernotd
 
 # Setting zsh, antigen and setting zsh as default.
 sudo dnf install zsh
 cd ~
-curl -L git.io/antigen > antigen.zsh
+curl -L git.io/antigen >antigen.zsh
 chsh -s $(which zsh) # Sets zsh by as default but only works after logout login.
 # zsh # converts to zsh for the reset of script, Might ask for config.
 curl -s https://ohmyposh.dev/install.sh | bash -s
@@ -142,7 +144,7 @@ sudo dnf install btop brightnessctl playerctl lazygit ranger SwayNotificationCen
 sudo dnf install ncurses-devel
 git clone https://github.com/vim/vim.git
 cd vim/src
-make distclean  # if you build Vim before
+make distclean # if you build Vim before
 make
 sudo make install
 ### neovim
@@ -220,4 +222,3 @@ tldr --update
 sudo rustup update
 
 "
-
